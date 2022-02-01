@@ -1,0 +1,18 @@
+#!/bin/bash
+# Simple kubernetes setup script for CSC468 group project
+
+# Start by enabling docker service
+systemctl enable docker --now
+
+# Install kubernetes
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add
+apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
+apt-get install kubeadm kubelet kubectl
+apt-mark hold kubeadm kubelet kubectl
+kubeadm version
+
+# Launch Kubernetes
+sudo swapoff –a # Apparently this is important, source https://phoenixnap.com/kb/install-kubernetes-on-ubuntu
+hostnamectl set-hostname node # Set our hostname to 'node'
+kubeadm init --pod-network-cidr=10.0.0.0/24 # Instantiate our pod network
+mkdir -p $HOME/.kube
