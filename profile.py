@@ -6,6 +6,7 @@ request = portal.context.makeRequestRSpec()
 
 # Create node requests
 nodes = [request.XenVM("node")]
+nodes[0].cores = 4
 
 # Create the nodes and handle updates and initial setup
 for node in nodes:
