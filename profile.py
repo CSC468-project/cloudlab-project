@@ -16,7 +16,7 @@ for node in nodes:
   node.routable_control_ip = "true"
   node.addService(rspec.Execute(shell="/bin/sh", command="apt update && sudo apt upgrade -y"))
   node.addService(rspec.Execute(shell="/bin/sh", command=updstr))
-  node.addService(rspec.Execute(shell="/bin/sh", command="git clone https://github.com/eolder/CSC468-WCU.git;mv cloudlab-project repo"))
+  node.addService(rspec.Execute(shell="/bin/sh", command="https://github.com/CSC468-project/cloudlab-project.git;mv cloudlab-project repo"))
   node.addService(rspec.Execute(shell="/bin/sh", command="tmux new-session -d -s kubernetes 'bash repo/setup'"))
 
 # Print the RSpec to the enclosing page.
