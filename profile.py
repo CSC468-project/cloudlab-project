@@ -16,7 +16,7 @@ for node in nodes:
   node.routable_control_ip = "true"
   node.addService(rspec.Execute(shell="/bin/sh", command="apt update && sudo apt upgrade -y"))
   node.addService(rspec.Execute(shell="/bin/sh", command=updstr))
-  node.addService(rspec.Execute(shell="/bin/sh", command="tmux new-session -d -s kubernetes 'bash /local/repository/setup'"))
+  node.addService(rspec.Execute(shell="bash", command="sudo tmux new-session -d -s kubernetes 'sudo bash /local/repository/setup'"))
 
 # Print the RSpec to the enclosing page.
 portal.context.printRequestRSpec()
