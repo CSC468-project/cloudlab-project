@@ -2,6 +2,7 @@ import geni.portal as portal
 import geni.rspec.pg as rspec
 
 # Create a Request object to start building the RSpec.
+# See https://docs.cloudlab.us/geni-lib.html for more details on this api
 request = portal.context.makeRequestRSpec()
 
 # Create node requests
