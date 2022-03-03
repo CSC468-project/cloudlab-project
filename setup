@@ -1,23 +1,39 @@
 #!/bin/bash
 # Simple kubernetes setup script for CSC468 group project
 
+
+
 # Upgrade packages
-sudo apt update && sudo apt upgrade -y
+# dpkg_options varible will prevent any user input requests during package update process.
+dpkg_options="-o Dpkg::Options::=\"--force-confdef\" -o Dpkg::Options::=\"--force-confold\""
+sudo apt update && sudo apt upgrade -y ${dpkg_options}
 
 # Install some packages
-sudo apt install -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" apache2 htop tmux git docker.io curl
+sudo apt install -y ${dpkg_options} apache2 htop tmux git docker.io curl git 
 
 # Start by enabling docker service
 systemctl enable docker --now
 
+# Build our containers
+# -t tag image
+# -f dockerfile name
+docker build -t djangoct -f djangoct /local/repository/DockerFiles/
+
+# Next, launch our containers in detached foreground mode.
+# To launch a shell on a running container, execute:
+# docker run -it $container_id bash
+docker run -dt djangoct tail -f /dev/null
+
+
+# TODO: Finish k8s setup.
 # Install kubernetes
-curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add
-apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
-apt-get install -y kubeadm kubelet kubectl
-apt-mark hold kubeadm kubelet kubectl
-kubeadm version
+#curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add
+#apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
+#apt-get install -y kubeadm kubelet kubectl
+#apt-mark hold kubeadm kubelet kubectl
+#kubeadm version
 
 # Launch Kubernetes
-sudo swapoff –a # Apparently this is important, source https://phoenixnap.com/kb/install-kubernetes-on-ubuntu
-kubeadm init --pod-network-cidr=10.0.0.0/24 # Create the pod network
-mkdir -p $HOME/.kube
+#sudo swapoff –a # Apparently this is important, source https://phoenixnap.com/kb/install-kubernetes-on-ubuntu
+#kubeadm init --pod-network-cidr=10.0.0.0/24 # Create the pod network
+#mkdir -p $HOME/.kube
