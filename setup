@@ -8,7 +8,7 @@ githash="$(cd $gitroot;git rev-parse --verify HEAD)"
 export PATH="/sbin:$PATH"
 
 # Upgrade packages
-dpkg_options="-o Dpkg::Options::=\"--force-confdef\" -o Dpkg::Options::=\"--force-confold\""
+#dpkg_options="-o Dpkg::Options::=\"--force-confdef\" -o Dpkg::Options::=\"--force-confold\""
 sudo apt update
 #&& sudo apt upgrade -y ${dpkg_options}
 
@@ -47,9 +47,6 @@ containers=(djangoct)
 	done
 )
 echo -e "\tdone."
-
-# Launch kubeadm
-kubeadm init
 
 # Await running workers
 
