@@ -5,7 +5,7 @@
 
 gitroot="/local/repository/DockerFiles/"
 githash="$(cd $gitroot;git rev-parse --verify HEAD)"
-
+export PATH="/sbin:$PATH"
 
 # Upgrade packages
 dpkg_options="-o Dpkg::Options::=\"--force-confdef\" -o Dpkg::Options::=\"--force-confold\""
@@ -13,7 +13,7 @@ sudo apt update
 #&& sudo apt upgrade -y ${dpkg_options}
 
 # Install some packages
-sudo apt install -y $dpkg_options apache2 htop tmux git docker curl git 
+sudo apt install -y $dpkg_options apache2 htop tmux git docker.io curl git 
 
 # Start by enabling docker service
 systemctl enable docker --now
@@ -47,6 +47,9 @@ containers=(djangoct)
 	done
 )
 echo -e "\tdone."
+
+# Launch kubeadm
+kubeadm init
 
 # Await running workers
 
