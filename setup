@@ -5,7 +5,7 @@
 
 gitroot="/local/repository/DockerFiles/"
 githash="$(cd $gitroot;git rev-parse --verify HEAD)"
-export PATH="/sbin:$PATH"
+PATH="/sbin:$PATH"
 
 # Upgrade packages
 #dpkg_options="-o Dpkg::Options::=\"--force-confdef\" -o Dpkg::Options::=\"--force-confold\""
@@ -32,6 +32,7 @@ mkdir -p $HOME/.kube
 
 # Exit here for non control node
 if [[ "$(hostname)" == *"worker"* ]]; then
+	echo "worker setup done; exiting."
 	exit
 fi 
 
@@ -53,3 +54,4 @@ echo -e "\tdone."
 
 # Launch containers on workers
 
+echo "main setup done; exiting."
