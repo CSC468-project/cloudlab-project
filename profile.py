@@ -7,11 +7,11 @@ request = portal.context.makeRequestRSpec()
 
 # Create node requests
 nodes = [request.XenVM("ctl"), request.XenVM("worker01")]
-nodes[0].cores = 2
-nodes[1].cores = 2
 
 # Create the nodes and handle updates and initial setup
 for node in nodes:
+  node.cores = 2
+  node.ram = 2048
   node.disk_image = "urn:publicid:IDN+emulab.net+image+emulab-ops:UBUNTU18-64-STD"
   node.routable_control_ip = "true"
   # Launch a tmux session and within that run the setup script from the repo root

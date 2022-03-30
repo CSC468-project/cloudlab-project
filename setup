@@ -5,7 +5,6 @@
 
 gitroot="/local/repository/DockerFiles/"
 githash="$(cd $gitroot;git rev-parse --verify HEAD)"
-PATH="/sbin:$PATH"
 
 # Upgrade packages
 #dpkg_options="-o Dpkg::Options::=\"--force-confdef\" -o Dpkg::Options::=\"--force-confold\""
