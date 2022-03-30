@@ -25,6 +25,8 @@ apt-get install -y kubeadm kubelet kubectl
 kubeadm version
 
 # Launch Kubernetes
+sudo modprobe br_netfilter
+sudo sysctl net.bridge.bridge-nf-call-iptables 1
 swapoff \-a # See https://kubernetes.io/docs/concepts/architecture/nodes/#swap-memory
 kubeadm init --pod-network-cidr=10.0.0.0/24
 mkdir -p $HOME/.kube
@@ -42,7 +44,7 @@ containers=(djangoct)
 	cd $GITROOT
 	for ct in ${containers[@]}; do
 		echo -e "\tBuilding ${ct}..."
-		docker build -t ct -f ct .
+		docker build -t $ct -f $ct .
 		docker image tag $ct "$ct":"$githash"
 	done
 )
