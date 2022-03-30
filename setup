@@ -8,11 +8,11 @@ githash="$(cd $gitroot;git rev-parse --verify HEAD)"
 
 # Upgrade packages
 #dpkg_options="-o Dpkg::Options::=\"--force-confdef\" -o Dpkg::Options::=\"--force-confold\""
-sudo apt update
+apt update
 #&& sudo apt upgrade -y ${dpkg_options}
 
 # Install some packages
-sudo apt install -y $dpkg_options apache2 htop tmux git docker.io curl git 
+apt install -y $dpkg_options apache2 htop tmux git docker.io curl git 
 
 # Start by enabling docker service
 systemctl enable docker --now
@@ -25,7 +25,8 @@ apt-get install -y kubeadm kubelet kubectl
 kubeadm version
 
 # Launch Kubernetes
-sudo swapoff –a # See https://kubernetes.io/docs/concepts/architecture/nodes/#swap-memory
+which swapoff
+swapoff –a # See https://kubernetes.io/docs/concepts/architecture/nodes/#swap-memory
 kubeadm init --pod-network-cidr=10.0.0.0/24
 mkdir -p $HOME/.kube
 
@@ -52,5 +53,7 @@ echo -e "\tdone."
 
 
 # Launch containers on workers
+
+which swapoff
 
 echo "main setup done; exiting."
