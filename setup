@@ -25,7 +25,7 @@ apt-get install -y kubeadm kubelet kubectl
 kubeadm version
 
 # Launch Kubernetes
-which swapoff
+env > ~/env1
 swapoff –a # See https://kubernetes.io/docs/concepts/architecture/nodes/#swap-memory
 kubeadm init --pod-network-cidr=10.0.0.0/24
 mkdir -p $HOME/.kube
@@ -53,7 +53,5 @@ echo -e "\tdone."
 
 
 # Launch containers on workers
-
-which swapoff
 
 echo "main setup done; exiting."
