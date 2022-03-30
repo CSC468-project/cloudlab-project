@@ -25,7 +25,7 @@ apt-get install -y kubeadm kubelet kubectl
 kubeadm version
 
 # Launch Kubernetes
-strace swapoff –a # See https://kubernetes.io/docs/concepts/architecture/nodes/#swap-memory
+swapoff \-a # See https://kubernetes.io/docs/concepts/architecture/nodes/#swap-memory
 kubeadm init --pod-network-cidr=10.0.0.0/24
 mkdir -p $HOME/.kube
 
