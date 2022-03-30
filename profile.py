@@ -15,7 +15,7 @@ for node in nodes:
   node.disk_image = "urn:publicid:IDN+emulab.net+image+emulab-ops:UBUNTU18-64-STD"
   node.routable_control_ip = "true"
   # Launch a tmux session and within that run the setup script from the repo root
-  node.addService(rspec.Execute(shell="bash", command="tmux new-session -d -s setup 'bash /local/repository/setup;bash -i'"))
+  node.addService(rspec.Execute(shell="bash", command="su root;tmux new-session -d -s setup 'bash /local/repository/setup;bash -i'"))
 
 # Print the RSpec to the enclosing page.
 portal.context.printRequestRSpec()
