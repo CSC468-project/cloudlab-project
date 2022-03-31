@@ -28,14 +28,17 @@ kubeadm version
 sudo modprobe br_netfilter
 sudo sysctl net.bridge.bridge-nf-call-iptables 1
 swapoff \-a # See https://kubernetes.io/docs/concepts/architecture/nodes/#swap-memory
-kubeadm init --pod-network-cidr=10.0.0.0/24
 mkdir -p $HOME/.kube
 
 # Exit here for non control node
 if [[ "$(hostname)" == *"worker"* ]]; then
+	sudo cp -i /etc/kubernetes/kubelet.conf $HOME/.kube/config
 	echo "worker setup done; exiting."
 	exit
 fi 
+
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+kubeadm init #--pod-network-cidr=10.0.0.0/24
 
 # Build our containers
 echo -e "Building containers"
