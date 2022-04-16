@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: pizzapie-deployment
+  name: pizza
   labels:
     app: flask
 spec:
@@ -19,11 +19,10 @@ spec:
     spec:
       containers:
       - name: flask
-        image: localhost:5000/flask
+        image: 192.168.1.1:5000/flask
         ports:
         - containerPort: 5000
-      containers:
       - name: mysql
-        image: localhost:5000/mysql
+        image: 192.168.1.1:5000/mysql
         ports:
         - containerPort: 3306
