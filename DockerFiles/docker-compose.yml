@@ -1,0 +1,8 @@
+services:
+  frontend:
+    image: flask
+    build:
+      context: .
+      dockerfile: flaskct
+  backend:
+    image: mysql
