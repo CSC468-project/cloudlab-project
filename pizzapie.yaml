@@ -20,7 +20,7 @@ spec:
         ports:
         - containerPort: 5000
       containers:
-      - name: sql
-        image: sql
+      - name: mysql
+        image: mysql
         ports:
         - containerPort: 3306

@@ -6,7 +6,7 @@ services:
     build:
       context: .
       dockerfile: flaskct
-  sql:
+  mysql:
     image: mysql
     build:
       context: .
