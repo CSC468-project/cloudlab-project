@@ -1,4 +1,4 @@
 {
-  "exec-opts": ["native.cgroupdriver=systemd"]
+  "exec-opts": ["native.cgroupdriver=systemd"],
   "insecure-repository": ["192.168.1.1:5000"]
 }
