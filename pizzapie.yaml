@@ -5,22 +5,25 @@ metadata:
   labels:
     app: flask
 spec:
+  ports:
+    - port: 80
+      protocol: TCP
   replicas: 1
   selector:
     matchLabels:
-      app: flask
+      app: pizza
   template:
     metadata:
       labels:
-        app: flask
+        app: pizza
     spec:
       containers:
       - name: flask
-        image: flask
+        image: localhost:5000/flask
         ports:
         - containerPort: 5000
       containers:
       - name: mysql
-        image: mysql
+        image: localhost:5000/mysql
         ports:
         - containerPort: 3306
