@@ -1,7 +1,14 @@
-FROM arch
+FROM archlinux
+
+
 RUN pacman -Sy
-RUN pacman -S python
+RUN pacman -S python python-pip --noconfirm
 RUN mkdir /dockerdata
-RUN pip3 install Flask
-COPY /local/repository/DockerData/djangoct/ /dockerdata/
-ENTRYPOINT ["python3", "/dockerdata/flask.py"]
+WORKDIR /dockerdata
+
+
+ENV FLASK_APP="app.py"
+COPY flaskct_data/ /dockerdata/
+RUN pip install -r /dockerdata/requirements.txt
+
+CMD flask run --host=0.0.0.0
