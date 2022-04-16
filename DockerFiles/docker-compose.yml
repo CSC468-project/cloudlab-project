@@ -1,8 +1,10 @@
+version: "2"
+
 services:
-  frontend:
+  flask:
     image: flask
     build:
       context: .
       dockerfile: flaskct
-  backend:
+  sql:
     image: mysql
