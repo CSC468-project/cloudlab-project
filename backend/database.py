@@ -1,26 +1,44 @@
-from time import time
-import flask_sqlalchemy
-import datetime
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
 
-db = flask_sqlalchemy.SQLAlchemy()
+database = Flask(__name__)
+database.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
+database.config['SQLALCHEMY_TRACK_MODIFCATIONS'] = False
+db = SQLAlchemy(database)
 
-db.config['SQLALCHEMY_DATABASE_URI'] = 'GET URI OF DATABASE?'
-db.config['SQLALCHEMY_TRACK_MODIFCATIONS'] = False
 
-
-
-class Orders(db.Model):
-    __tablename__ = 'orders'
+class Customer(db.Model):
+    __tablename__ = 'customer'
     id = db.Column(db.Integer, primary_key=True)
-    time = db.Column(db.datetime )
-    address = db.Column(db.String(100))
-    phone_number = db.Column(db.Integer)
+    first_name = db.Column(db.String(50), nullable = False)
+    last_name = db.Column(db.String(50), nullable = False)
+    address = db.Column(db.String(500), nullable = False)
+    city = db.Column(db.String(50), nullable = False)
+    postcode = db.Column(db.String(50), nullable = False)
+    email = db.Column(db.String(50), nullable = False, unique = True)
+    phone_number = db.Column(db.String(50), nullable = False, unique = True)
+
+    orders = db.relationship('Order', backref = 'customer')
+
+order_menu = db.Table('order_menu',
+    db.Column('order_id', db.Integer, db.ForeignKey('order.id'), primary_key = True),
+    db.Column('menu_id', db.Integer, db.ForeignKey('menu.id'), primary_key = True)
+)
+
+class Order(db.Model):
+    __tablename__ = 'order'
+    id = db.Column(db.Integer, primary_key=True)
+    time = db.Column(db.DateTime, nullable = False, default = datetime.utcnow)
     sub_total = db.Column(db.Integer)
-    tip = db.Colun(db.Integer)
+    tip = db.Column(db.Integer)
     total = db.Column(db.Integer)
-    food = db.Column(db.String(100))
+    
+    customer_id = db.Column(db.Integer, db.ForeignKey('customer.id'), nullable = False)
+    menu = db.relationship('Menu', secondary = order_menu)
 
 class Menu(db.Model):
     __tablename__ = 'menu'
-    food_type = db.Column(db.String(100))
-    cost = db.Column(db.Integer)
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable = False, unique = True)
+    price = db.Column(db.Integer, nullable = False)
