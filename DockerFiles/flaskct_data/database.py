@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
 database = Flask(__name__)
-database.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
+database.config['SQLALCHEMY_DATABASE_URI'] = 'http://128.105.146.165:30000/job/pizzapie_server/'
 database.config['SQLALCHEMY_TRACK_MODIFCATIONS'] = False
 db = SQLAlchemy(database)
 
