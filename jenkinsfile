@@ -27,7 +27,7 @@ pipeline {
 		}
         stage('Deploy') {
 			steps {
-				withKubeConfig() {
+				kubeconfig {
 	                sh 'kubectl replace deployment pizzapie -f pizzapie.yaml'
 			    }
 			}
