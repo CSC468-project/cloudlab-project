@@ -7,19 +7,17 @@ pipeline {
 	}
     stages {
 		stage('Setup') {
-			steps {
+			container('buildct') {
 				sh 'pacman -Sy'
 				sh 'pacman -S docker-compose --noconfirm'
 			}
 		}
         stage('Build and Upload') {
-            steps {
-				container('buildct') {
-	                echo 'Building...'
-					sh '(cd DockerFiles;docker-compose build)'
-	                echo 'Uploading to Docker registry...'
-					sh '(cd DockerFiles;docker-compose push)'
-				}
+			container('buildct') {
+                echo 'Building...'
+				sh '(cd DockerFiles;docker-compose build)'
+                echo 'Uploading to Docker registry...'
+				sh '(cd DockerFiles;docker-compose push)'
 			}
 		}
         stage('Deploy') {
