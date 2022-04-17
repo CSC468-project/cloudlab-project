@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    blank: blank
+spec:
+  containers:
+    - name: buildct
+      image: archlinux:latest

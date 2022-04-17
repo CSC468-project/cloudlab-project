@@ -1,6 +1,8 @@
 pipeline {
     agent {
-		docker { image 'archlinux' }
+		kubernetes {
+			yamlFile: 'kubsbuilder.yaml'
+		}
 	}
     stages {
 		stage('Setup') {
