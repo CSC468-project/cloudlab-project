@@ -26,9 +26,11 @@ pipeline {
 			}
 		}
         stage('Deploy') {
-			withKubeConfig([credentialsId: 'jenkins', serverUrl: '192.168.1.1']) {
-                sh 'kubectl replace deployment pizzapie -f pizzapie.yaml'
-		    }
+			steps {
+				withKubeConfig() {
+	                sh 'kubectl replace deployment pizzapie -f pizzapie.yaml'
+			    }
+			}
 	    }
     }	
 }
