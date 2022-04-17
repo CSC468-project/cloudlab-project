@@ -7,3 +7,7 @@ spec:
   containers:
     - name: buildct
       image: archlinux:latest
+      commands:
+      - sleep
+      args:
+      - 99d
