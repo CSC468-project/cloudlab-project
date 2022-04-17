@@ -30,8 +30,7 @@ pipeline {
         stage('Deploy') {
 			steps {
 				echo 'Replacing running pods on k8s cluster'
-				sh 'kubectl get deployments -A'
-                sh 'kubectl replace deployment pizzapie -f pizzapie.yaml'
+                sh 'kubectl --namespace="default" replace deployment pizzapie -f pizzapie.yaml'
 			}
 	    }
     }	
