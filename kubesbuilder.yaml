@@ -7,7 +7,6 @@ spec:
   containers:
     - name: buildct
       image: archlinux:latest
-      commands:
-      - sleep
-      args:
-      - 99d
+      command: ["pacman", "-Sy"]
+      command: ["pacman", "-S", "docker-compose"]
+      command: ["tail", "-f", "/dev/null"]
