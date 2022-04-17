@@ -10,21 +10,21 @@ pipeline {
     stages {
 		stage('Setup') {
 			steps {
-				sh 'pacman -Sy'
-				sh 'pacman -S docker docker-compose --noconfirm'
-				sh 'dockered&'
+				sh 'sudo pacman -Sy'
+				sh 'sudo pacman -S docker docker-compose --noconfirm'
+				sh 'sudo dockered&'
 			}
 		}
         stage('Build') {
 			steps {
                 echo 'Building...'
-				sh '(cd DockerFiles;docker-compose build)'
+				sh '(cd DockerFiles;sudo docker-compose build)'
 			}
 		}
         stage('Upload') {
 			steps {
                 echo 'Uploading to Docker registry...'
-				sh '(cd DockerFiles;docker-compose push)'
+				sh '(cd DockerFiles;sudo docker-compose push)'
 			}
 		}
         stage('Deploy') {
