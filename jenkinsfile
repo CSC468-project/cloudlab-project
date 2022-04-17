@@ -11,19 +11,18 @@ pipeline {
 			steps {
 				sh 'pacman -Sy'
 				sh 'pacman -S docker docker-compose --noconfirm'
+				sh 'systemctl enable --now docker.service'
 			}
 		}
         stage('Build') {
 			steps {
                 echo 'Building...'
-				sh 'dockerd&'
 				sh '(cd DockerFiles;docker-compose build)'
 			}
 		}
         stage('Upload') {
 			steps {
                 echo 'Uploading to Docker registry...'
-				sh 'dockerd&'
 				sh '(cd DockerFiles;docker-compose push)'
 			}
 		}
