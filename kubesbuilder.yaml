@@ -11,3 +11,10 @@ spec:
         allowPrivilegeEscalation: true
       capabilities:
         add: ["SYS_ADMIN"]
+      volumeMounts: 
+        - mountPath: /var/run 
+          name: docker-sock 
+  volumes: 
+    - name: docker-sock 
+      hostPath: 
+        path: /var/run 

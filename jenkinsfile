@@ -11,7 +11,6 @@ pipeline {
 			steps {
 				sh 'pacman -Sy'
 				sh 'pacman -S docker docker-compose --noconfirm'
-				sh 'systemctl enable --now docker.service'
 			}
 		}
         stage('Build') {
