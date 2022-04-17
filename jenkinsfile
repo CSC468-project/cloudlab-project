@@ -22,10 +22,10 @@ pipeline {
         stage('Upload') {
 			steps {
                 echo 'Uploading to Docker registry...'
-				sh 'socat tcp-listen:5000,bind=localhost,fork tcp:192.168.1.1:5000&'
-				sh 'curl -I 127.0.0.1:5000/v2/'
-				sh 'curl -I 192.168.1.1:5000/v2/'
-				sh 'cat /etc/hosts'
+//				sh 'socat tcp-listen:5000,bind=localhost,fork tcp:192.168.1.1:5000&'
+//				sh 'curl -I 127.0.0.1:5000/v2/'
+//				sh 'curl -I 192.168.1.1:5000/v2/'
+//				sh 'cat /etc/hosts'
 				sh '(cd DockerFiles;docker-compose push)'
 			}
 		}
