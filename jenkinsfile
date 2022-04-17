@@ -12,18 +12,16 @@ pipeline {
 				sh 'pacman -S docker-compose --noconfirm'
 			}
 		}
-        stage('Build') {
+        stage('Build and Upload') {
             steps {
-                echo 'Building...'
-				sh '(cd DockerFiles;docker-compose build)'
-            }
-        }
-        stage('Upload') {
-            steps {
-                echo 'Uploading to Docker registry...'
-				sh '(cd DockerFiles;docker-compose push)'
-            }
-        }
+				container('buildct') {
+	                echo 'Building...'
+					sh '(cd DockerFiles;docker-compose build)'
+	                echo 'Uploading to Docker registry...'
+					sh '(cd DockerFiles;docker-compose push)'
+				}
+			}
+		}
         stage('Deploy') {
             steps {
                 sh 'kubectl replace deployment pizzapie -f pizzapie.yaml'
