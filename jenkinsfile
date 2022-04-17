@@ -27,7 +27,7 @@ pipeline {
 		}
         stage('Deploy') {
 			steps {
-				kubeconfig(serverUrl '192.168.1.1',	credentialsId 'Jenkins',caCertificate 'na/test') {
+				withCredentials([kubeconfigContent(credentialsId: 'k8s-cluster', variable: 'KUBECONFIG_CONTENT')]) {
 	                sh 'kubectl replace deployment pizzapie -f pizzapie.yaml'
 			    }
 			}
