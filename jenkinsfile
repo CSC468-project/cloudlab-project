@@ -27,7 +27,7 @@ pipeline {
 		}
         stage('Deploy') {
 			steps {
-				withCredentials([kubeconfigContent(credentialsId: 'k8s-cluster', variable: 'KUBECONFIG_CONTENT')]) {
+				withCredentials([kubeconfigContent(credentialsId: 'kubernetes', variable: 'KUBECONFIG_CONTENT')]) {
 	                sh 'kubectl replace deployment pizzapie -f pizzapie.yaml'
 			    }
 			}
