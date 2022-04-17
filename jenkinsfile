@@ -5,25 +5,32 @@ pipeline {
 			yamlFile 'kubesbuilder.yaml'
 		}
 	}
-    stages {
-		stage('Setup') {
-			container('buildct') {
-				sh 'pacman -Sy'
-				sh 'pacman -S docker-compose --noconfirm'
+
+	node(buildct) {
+	    stages {
+			stage('Setup') {
+				container('buildct') {
+					sh 'pacman -Sy'
+					sh 'pacman -S docker-compose --noconfirm'
+				}
 			}
-		}
-        stage('Build and Upload') {
-			container('buildct') {
-                echo 'Building...'
-				sh '(cd DockerFiles;docker-compose build)'
-                echo 'Uploading to Docker registry...'
-				sh '(cd DockerFiles;docker-compose push)'
+	        stage('Build') {
+				container('buildct') {
+	                echo 'Building...'
+					sh '(cd DockerFiles;docker-compose build)'
+				}
 			}
-		}
-        stage('Deploy') {
-            steps {
-                sh 'kubectl replace deployment pizzapie -f pizzapie.yaml'
-            }
-        }
-    }
+	        stage('Upload') {
+				container('buildct') {
+	                echo 'Uploading to Docker registry...'
+					sh '(cd DockerFiles;docker-compose push)'
+				}
+			}
+	        stage('Deploy') {
+	            steps {
+	                sh 'kubectl replace deployment pizzapie -f pizzapie.yaml'
+        	    }
+   		    }
+	    }	
+	}
 }
