@@ -1,6 +1,7 @@
 pipeline {
     agent {
 		kubernetes {
+			defaultContainer 'buildct'
 			yamlFile 'kubesbuilder.yaml'
 		}
 	}
