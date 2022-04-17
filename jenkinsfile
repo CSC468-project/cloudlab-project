@@ -10,7 +10,7 @@ pipeline {
 		stage('Setup') {
 			steps {
 				sh 'pacman -Sy'
-				sh 'pacman -S socat docker docker-compose --noconfirm'
+				sh 'pacman -S curl socat docker docker-compose --noconfirm'
 			}
 		}
         stage('Build') {
@@ -23,6 +23,8 @@ pipeline {
 			steps {
                 echo 'Uploading to Docker registry...'
 				sh 'socat tcp-listen:5000,bind=127.0.0.1,fork tcp:192.168.1.1:5000&'
+				sh 'curl 127.0.0.1:5000'
+				sh 'curl 192.168.1.1:5000'
 				sh '(cd DockerFiles;docker-compose push)'
 			}
 		}
