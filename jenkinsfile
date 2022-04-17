@@ -1,7 +1,14 @@
 pipeline {
-    agent any
-
+    agent {
+		docker { image 'archlinux' }
+	}
     stages {
+		stage('Setup') {
+			steps {
+				sh 'pacman -Sy'
+				sh 'pacman -S docker-compose --noconfirm'
+			}
+		}
         stage('Build') {
             steps {
                 echo 'Building...'
