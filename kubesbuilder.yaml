@@ -9,3 +9,5 @@ spec:
       command: ["tail", "-f", "/dev/null"]
       securityContext:
         allowPrivilegeEscalation: true
+      capabilities:
+        add: ["SYS_ADMIN"]
