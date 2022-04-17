@@ -12,7 +12,7 @@ pipeline {
 				sh 'pacman -Sy'
 				sh 'pacman -S sudo git curl socat docker docker-compose --noconfirm'
 				sh 'git clone https://aur.archlinux.org/kubectl-bin.git'
-				sh 'useradd builduser -m; passwd -d builduser; printf 'builduser ALL=(ALL) ALL\n' | tee -a /etc/sudoers;'
+				sh 'useradd builduser -m; passwd -d builduser; printf 'builduser ALL=(ALL) ALL\\n' | tee -a /etc/sudoers;'
 				sh '(su builduser; cd kubectl-bin; makepkg -cis)'
 			}
 		}
