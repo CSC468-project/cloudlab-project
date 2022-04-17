@@ -2,12 +2,12 @@ version: "2"
 
 services:
   flask:
-    image: flask
+    image: localhost:5000/flask
     build:
       context: .
       dockerfile: flaskct
   mysql:
-    image: mysql
+    image: localhost:5000/mysql
     build:
       context: .
       dockerfile: mysql

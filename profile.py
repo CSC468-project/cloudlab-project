@@ -42,7 +42,7 @@ for i in range(num_nodes):
   if i == 0:
     node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/install_jenkins.sh"))
     node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/kube_manager.sh"))
-    node.addService(pg.Execute(shell="sh", command="sudo bash cd /local/repository/DockerFiles;docker-compose build"))
+    node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/docker_compose.sh"))
   else:
     node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/kube_worker.sh"))
     
