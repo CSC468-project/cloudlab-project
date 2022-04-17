@@ -3,6 +3,7 @@ kind: Pod
 spec:
   securityContext:
     runAsUser: 0
+  hostPID: true
   containers:
     - name: buildct
       image: archlinux:latest
