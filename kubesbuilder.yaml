@@ -1,7 +1,13 @@
 apiVersion: v1
 kind: Pod
 spec:
+  securityContext:
+    runAsUser: 1000
+    runAsGroup: 3000
+    fsGroup: 2000
   containers:
     - name: buildct
       image: archlinux:latest
       command: ["tail", "-f", "/dev/null"]
+      securityContext:
+        allowPrivilegeEscalation: false

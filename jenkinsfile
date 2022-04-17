@@ -12,6 +12,7 @@ pipeline {
 			steps {
 				sh 'pacman -Sy'
 				sh 'pacman -S docker docker-compose --noconfirm'
+				sh 'dockered&'
 			}
 		}
         stage('Build') {
