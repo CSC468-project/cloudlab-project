@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building...'
+				(cd DockerFiles;docker-compose build)
+            }
+        }
+        stage('Upload') {
+            steps {
+                echo 'Uploading to Docker registry...'
+				(cd DockerFiles;docker-compose push)
+            }
+        }
+        stage('Deploy') {
+            steps {
+                kubectl replace deployment pizzapie -f pizzapie.yaml
+            }
+        }
+    }
+}
