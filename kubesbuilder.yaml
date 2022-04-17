@@ -1,12 +1,7 @@
 apiVersion: v1
 kind: Pod
-metadata:
-  labels:
-    buildct: buildct
 spec:
   containers:
     - name: buildct
       image: archlinux:latest
-      command: ["pacman", "-Sy"]
-      command: ["pacman", "-S", "docker-compose"]
       command: ["tail", "-f", "/dev/null"]

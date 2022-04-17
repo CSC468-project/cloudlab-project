@@ -1,36 +1,35 @@
 pipeline {
     agent {
 		kubernetes {
+			label 'buildct'
 			defaultContainer 'buildct'
 			yamlFile 'kubesbuilder.yaml'
 		}
 	}
 
-	node(buildct) {
-	    stages {
-			stage('Setup') {
-				container('buildct') {
-					sh 'pacman -Sy'
-					sh 'pacman -S docker-compose --noconfirm'
-				}
+    stages {
+		stage('Setup') {
+			steps {
+				sh 'pacman -Sy'
+				sh 'pacman -S docker-compose --noconfirm'
 			}
-	        stage('Build') {
-				container('buildct') {
-	                echo 'Building...'
-					sh '(cd DockerFiles;docker-compose build)'
-				}
+		}
+        stage('Build') {
+			steps {
+                echo 'Building...'
+				sh '(cd DockerFiles;docker-compose build)'
 			}
-	        stage('Upload') {
-				container('buildct') {
-	                echo 'Uploading to Docker registry...'
-					sh '(cd DockerFiles;docker-compose push)'
-				}
+		}
+        stage('Upload') {
+			steps {
+                echo 'Uploading to Docker registry...'
+				sh '(cd DockerFiles;docker-compose push)'
 			}
-	        stage('Deploy') {
-	            steps {
-	                sh 'kubectl replace deployment pizzapie -f pizzapie.yaml'
-        	    }
-   		    }
-	    }	
-	}
+		}
+        stage('Deploy') {
+            steps {
+                sh 'kubectl replace deployment pizzapie -f pizzapie.yaml'
+       	    }
+	    }
+    }	
 }
