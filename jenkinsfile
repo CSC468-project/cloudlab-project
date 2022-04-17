@@ -10,7 +10,9 @@ pipeline {
 		stage('Setup') {
 			steps {
 				sh 'pacman -Sy'
-				sh 'pacman -S curl socat docker docker-compose --noconfirm'
+				sh 'pacman -S git curl socat docker docker-compose --noconfirm'
+				sh 'git clone https://aur.archlinux.org/kubectl-bin.git'
+				sh '(cd kubectl-bin; makepkg -cis)'
 			}
 		}
         stage('Build') {
@@ -27,9 +29,8 @@ pipeline {
 		}
         stage('Deploy') {
 			steps {
-				withCredentials([kubeconfigContent(credentialsId: 'kubernetes', variable: 'KUBECONFIG_CONTENT')]) {
-	                sh 'kubectl replace deployment pizzapie -f pizzapie.yaml'
-			    }
+				echo 'Replacing running pods on k8s cluster'
+                sh 'kubectl replace deployment pizzapie -f pizzapie.yaml'
 			}
 	    }
     }	
