@@ -21,7 +21,7 @@ spec:
         - name: flaskport
           containerPort: 5000
         command: ["bash"]
-        args: ["-c", "\"python -c 'from database import init_db; init_db()'\""]
+        args: ["-c", "python", "-c", "'from", "database", "import", "init_db;", "init_db()'"]
       - name: mysql
         image: 192.168.1.1:5000/mysql
         ports:
