@@ -1,8 +1,12 @@
 from re import A, T
 from unicodedata import name
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, ForeignKey, Table, DateTime
 from datetime import datetime
 from database import Base
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.orm import relationship
+from sqlalchemy.types import DateTime
 
 class Customer(Base):
     __tablename__ = 'customer'
@@ -15,7 +19,7 @@ class Customer(Base):
     email = Column(String(50), nullable = False, unique = True)
     phone_number = Column(String(50), nullable = False, unique = True)
 
-    # orders = Base.relationship('Order', backref = 'customer')
+    orders = relationship('Order', backref = 'customer')
 
 
     def __init__(self, first_name, last_name, address, city, postcode, email, phone_number):
@@ -29,22 +33,22 @@ class Customer(Base):
 
     def __repr__(self):
         return f'<User {self.name!r}>'
-"""
-order_menu = Base.Table('order_menu',
-    Column('order_id', Integer, Base.ForeignKey('order.id'), primary_key = True),
-    Column('menu_id', Integer, Base.ForeignKey('menu.id'), primary_key = True)
+
+order_menu = Table('order_menu', Base.metadata,
+    Column('order_id', Integer, ForeignKey('order.id'), primary_key = True),
+    Column('menu_id', Integer, ForeignKey('menu.id'), primary_key = True)
 )
-"""
+
 class Order(Base):
     __tablename__ = 'order'
     id = Column(Integer, primary_key=True)
-    #time = Column(datetime, nullable = False, default = datetime.utcnow)
+    time = Column(DateTime, nullable = False, default = datetime.utcnow())
     sub_total = Column(Integer)
     tip = Column(Integer)
     total = Column(Integer)
     
-    # customer_id = Column(Integer, Base.ForeignKey('customer.id'), nullable = False)
-    # menu = Base.relationship('Menu', secondary = order_menu)
+    customer_id = Column(Integer, ForeignKey('customer.id'), nullable = False)
+    menu = relationship('Menu', secondary = order_menu)
 
 
     def __init__(self, sub_total, tip, total):
