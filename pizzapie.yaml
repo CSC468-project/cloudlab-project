@@ -19,7 +19,7 @@ spec:
         image: 192.168.1.1:5000/flask
         ports:
         - containerPort: 5000
-          name: flask_app_port
+          name: flask-app-port
       - name: mysql
         image: 192.168.1.1:5000/mysql
         ports:

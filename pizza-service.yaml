@@ -4,10 +4,10 @@ metadata:
   name: cloudcooked-service
 spec:
   ports:
-    - name: flask_ext_port
+    - name: flask-ext-port
       protocol: TCP
       port: 80
-      targetPort: flask_app_port
+      targetPort: flask-app-port
   selector:
     app: flask
 
