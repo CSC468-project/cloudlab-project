@@ -2,7 +2,7 @@ FROM archlinux
 
 
 RUN pacman -Sy
-RUN pacman -S python python-pip --noconfirm
+RUN pacman -S python python-pip python-mysqlclient --noconfirm
 RUN mkdir /dockerdata
 WORKDIR /dockerdata
 
