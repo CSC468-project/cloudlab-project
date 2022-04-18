@@ -22,7 +22,7 @@ pipeline {
         stage('Deploy') {
 			steps {
 				echo 'Replacing running pods on k8s cluster'
-                sh 'kubectl --namespace="default" replace --force -f pizzapie.yaml'
+                sh 'kubectl --namespace="default" replace --force -f cloudcooked.yaml'
 			}
 	    }
     }	

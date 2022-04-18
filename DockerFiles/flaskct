@@ -3,12 +3,11 @@ FROM archlinux
 
 RUN pacman -Sy
 RUN pacman -S python python-pip python-mysqlclient --noconfirm
-RUN mkdir /dockerdata
+
+ADD flaskct_data /dockerdata
 WORKDIR /dockerdata
 
-
-ENV FLASK_APP="app.py"
-COPY flaskct_data/ /dockerdata/
 RUN pip install -r /dockerdata/requirements.txt
 
+ENV FLASK_APP="app.py"
 CMD flask run --host=0.0.0.0
