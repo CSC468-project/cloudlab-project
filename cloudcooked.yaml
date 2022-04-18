@@ -22,7 +22,7 @@ spec:
           containerPort: 5000
         env:
         - name: ARGS
-          value: "python -c 'from database import init_db;init_db()'"
+          value: "sleep 90;python -c 'from database import init_db;init_db()'"
         command: ["bash"]
         args: ["-c", "$(ARGS)"]
       - name: mysql
