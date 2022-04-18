@@ -8,18 +8,20 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: pizza
+      app: flask
   template:
     metadata:
       labels:
-        app: pizza
+        app: flask
     spec:
       containers:
       - name: flask
         image: 192.168.1.1:5000/flask
         ports:
         - containerPort: 5000
+          name: flask_app_port
       - name: mysql
         image: 192.168.1.1:5000/mysql
         ports:
         - containerPort: 3306
+
