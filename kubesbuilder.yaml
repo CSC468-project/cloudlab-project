@@ -6,7 +6,7 @@ spec:
   hostPID: true
   containers:
     - name: buildct
-      image: archlinux:latest
+      image: emolder/archbuilder:latest
       command: ["tail", "-f", "/dev/null"]
       securityContext:
         allowPrivilegeEscalation: true
