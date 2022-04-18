@@ -38,7 +38,7 @@ order_menu = Base.Table('order_menu',
 class Order(Base):
     __tablename__ = 'order'
     id = Column(Integer, primary_key=True)
-    time = Column(Base.DateTime, nullable = False, default = datetime.utcnow)
+    time = Column(datetime, nullable = False, default = datetime.utcnow)
     sub_total = Column(Integer)
     tip = Column(Integer)
     total = Column(Integer)
