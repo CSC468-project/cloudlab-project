@@ -16,7 +16,7 @@ def init_db():
     # you will have to import them first before calling init_db()
     from models import Menu
     Base.metadata.create_all(bind=engine)
-    items = [Menu("Pizza", "3.50"), Menu("Fries", "$2.50"), Menu("Soda", "$1.75")]
+    items = [Menu("Pizza", "3.50"), Menu("Fries", "2.50"), Menu("Soda", "1.75")]
     for item in items:
         db_session.add(item)
     db_session.commit()
