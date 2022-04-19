@@ -1,0 +1,13 @@
+version: "2"
+
+services:
+  flask:
+    image: 192.168.1.1:5000/flask
+    build:
+      context: .
+      dockerfile: flaskct
+  mysql:
+    image: 192.168.1.1:5000/mysql
+    build:
+      context: .
+      dockerfile: mysql
