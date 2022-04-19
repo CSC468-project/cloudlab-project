@@ -37,7 +37,6 @@ spec:
     app: cloud-cooked
   ports:
   - name: http
-    port: 35000
-    nodePort: 35000
+    port: 80
     targetPort: 5000
-  type: NodePort
+  type: 
