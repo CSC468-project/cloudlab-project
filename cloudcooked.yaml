@@ -6,8 +6,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      run: flask
-      run: mysql
+      run: cloud-cooked
   template:
     metadata:
       labels:
