@@ -6,7 +6,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      run: cloud-cooked
+      app: cloud-cooked
   template:
     metadata:
       labels:
