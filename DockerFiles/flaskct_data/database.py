@@ -23,8 +23,7 @@ def init_db():
 
 
 def get_menu_items():
-    import models
-    return Menu.query.all()
+    return db_session.query_property('SELECT * FROM menu')
 
 
 """ Please dont remove this yet lol
