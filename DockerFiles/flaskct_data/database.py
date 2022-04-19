@@ -16,12 +16,14 @@ def init_db():
     # you will have to import them first before calling init_db()
     import models
     Base.metadata.create_all(bind=engine)
-    db_session.add(
-        [Menu("Pizza", "3.50"), Menu("Fries", "$2.50"), Menu("Soda", "$1.75")]
-    )
+    items = [Menu("Pizza", "3.50"), Menu("Fries", "$2.50"), Menu("Soda", "$1.75")]
+    for item in items:
+        db_session.add(item)
     db_session.commit()
 
 
+def get_menu_items():
+    return Base.query
 
 
 """ Please dont remove this yet lol
