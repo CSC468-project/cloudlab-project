@@ -6,7 +6,7 @@ from database import Base
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import relationship
-from sqlalchemy.types import DateTime
+from sqlalchemy.types import DateTime, Float
 
 class Customer(Base):
     __tablename__ = 'customer'
@@ -64,7 +64,8 @@ class Menu(Base):
     __tablename__ = 'menu'
     id = Column(Integer, primary_key=True)
     name = Column(String(100), nullable = False, unique = True)
-    price = Column(Integer, nullable = False)
+    price = Column(Float, nullable = False)
+
 
     def __init__(self, name, price):
         self.name = name

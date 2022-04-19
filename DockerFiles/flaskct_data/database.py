@@ -14,8 +14,8 @@ def init_db():
     # import all modules here that might define models so that
     # they will be registered properly on the metadata.  Otherwise
     # you will have to import them first before calling init_db()
-    import models
     Base.metadata.create_all(bind=engine)
+    from models import Menu
     items = [Menu("Pizza", "3.50"), Menu("Fries", "$2.50"), Menu("Soda", "$1.75")]
     for item in items:
         db_session.add(item)
@@ -23,7 +23,8 @@ def init_db():
 
 
 def get_menu_items():
-    return db_session.query_property('SELECT * FROM menu')
+    from models import Menu
+    return Menu.query.all()
 
 
 """ Please dont remove this yet lol
