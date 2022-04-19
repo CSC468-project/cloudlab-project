@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, jsonify
+from flask import Flask, request, render_template, jsonify, send_from_directory
 from database import get_menu_items
 
 app = Flask(__name__)
@@ -33,6 +33,11 @@ def my_form_post():
 def menu_route():
     items = get_menu_items()
     return render_template('menu.html', len = len(items), items = items)
+
+
+@app.route('/static/<path:path>', methods=['GET'])
+def static_resources(path):
+    return send_from_directory('static', path)
 
 
 if __name__ == '__main__':
