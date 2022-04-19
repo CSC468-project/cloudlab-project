@@ -4,22 +4,16 @@ metadata:
   name: cloudcooked
 spec:
   replicas: 1
-  selector:
-    matchLabels:
-      run: flask
-      run: mysql
   template:
     metadata:
       labels:
-        run: flask
-        run: mysql
+        app: cloud-cooked
     spec:
       containers:
       - name: flask
         image: 192.168.1.1:5000/flask
         ports:
-        - name: flaskport
-          containerPort: 5000
+        - containerPort: 5000
         env:
         - name: ARGS
           value: "sleep 90;python -c 'from database import init_db;init_db()'"
@@ -36,12 +30,10 @@ kind: Service
 metadata:
   name: cloudcooked
 spec:
-  type: NodePort
+  selector:
+    app: flask
   ports:
   - name: http
-    protocol: TCP
-    port: 5000
+    port: 80
     targetPort: 5000
-    nodePort: 35000
-  selector:
-    run: flask
+  type: loadbalancer
