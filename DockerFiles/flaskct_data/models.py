@@ -65,11 +65,12 @@ class Menu(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(100), nullable = False, unique = True)
     price = Column(Float(precision=4), nullable = False)
+    url = Column(String(5000), nullable = False, unique = True)
 
-
-    def __init__(self, name, price):
+    def __init__(self, name, price, url):
         self.name = name
         self.price = price
+        self.url = url
 
     def __repr__(self):
         return f'<User {self.name!r}>'
