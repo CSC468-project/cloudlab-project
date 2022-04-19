@@ -34,7 +34,7 @@ metadata:
   name: cloudcooked
 spec:
   selector:
-    app: flask
+    app: cloud-cooked
   ports:
   - name: http
     port: 80
