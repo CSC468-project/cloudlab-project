@@ -23,7 +23,8 @@ def init_db():
 
 
 def get_menu_items():
-    return Base.query.all()
+    import models
+    return Menu.query.all()
 
 
 """ Please dont remove this yet lol
