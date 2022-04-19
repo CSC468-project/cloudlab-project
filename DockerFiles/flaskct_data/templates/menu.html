@@ -6,12 +6,16 @@
 </head>
 <body>
 
-<ol>
-{%for i in range(0, len)%}
+<div id = menu>
+    {%for i in range(0, len)%}
 
-    <li>{{items[i]}}</li>
+    <div>
+        Item: {{items[i].name}}
+        Price: ${{items[i].price}}
+        ID: ${{items[i].id}}
+    </div>
 {%endfor%}
-</ol>
+</div>
 
 </body>
 </html>

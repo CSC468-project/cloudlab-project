@@ -1,4 +1,5 @@
 from flask import Flask, request, render_template, jsonify
+from database import get_menu_items
 
 app = Flask(__name__)
 
@@ -28,14 +29,10 @@ def my_form_post():
     return jsonify(result=result)
 
 
-""" 
-/! Where `items` is our list of menu items from the database.                   !/
-/! Renders a menu pages from the 'flaskct_data/templates/menu.html' template.   !/
-
 @app.route('/menu', methods=['GET'])
 def menu_route():
-     return render_template('menu.html', len = len(items), items = items)
-"""
+    items = get_menu_items()
+    return render_template('menu.html', len = len(items), items = items)
 
 
 if __name__ == '__main__':

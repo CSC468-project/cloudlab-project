@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cloudcooked
+  name: cloudcooked-menuwork
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: cloud-cooked
+      app: cloud-cooked-menuwork
   template:
     metadata:
       labels:
-        app: cloud-cooked
+        app: cloud-cooked-menuwork
     spec:
       containers:
       - name: flask
@@ -31,13 +31,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: cloudcooked
+  name: cloudcooked-menuwork
 spec:
   selector:
-    app: cloud-cooked
+    app: cloud-cooked-menuwork
   ports:
   - name: http
-    port: 35000
-    nodePort: 35000
+    port: 36000
+    nodePort: 36000
     targetPort: 5000
   type: NodePort
