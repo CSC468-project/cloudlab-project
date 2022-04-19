@@ -4,6 +4,10 @@ metadata:
   name: cloudcooked
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      run: flask
+      run: mysql
   template:
     metadata:
       labels:
