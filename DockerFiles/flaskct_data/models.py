@@ -64,7 +64,7 @@ class Menu(Base):
     __tablename__ = 'menu'
     id = Column(Integer, primary_key=True)
     name = Column(String(100), nullable = False, unique = True)
-    price = Column(Float, nullable = False)
+    price = Column(Float(precision=4), nullable = False)
 
 
     def __init__(self, name, price):
