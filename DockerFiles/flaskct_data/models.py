@@ -65,7 +65,7 @@ class Menu(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(100), nullable = False, unique = True)
     price = Column(Float(precision=4), nullable = False)
-    url = Column(String(3072), nullable = False, unique = True)
+    url = Column(String(1000), nullable = False)
 
     def __init__(self, name, price, url):
         self.name = name
