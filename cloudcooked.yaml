@@ -19,7 +19,7 @@ spec:
         - containerPort: 5000
         env:
         - name: ARGS
-          value: "sleep 45;python -c 'from database import init_db;init_db()';flask run --host=0.0.0.0"
+          value: "sleep 65;python -c 'from database import init_db;init_db()';flask run --host=0.0.0.0"
         command: ["bash"]
         args: ["-c", "$(ARGS)"]
       - name: mysql
