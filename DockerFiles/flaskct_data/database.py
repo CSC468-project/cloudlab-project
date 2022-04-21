@@ -33,6 +33,14 @@ def get_menu_items(path):
     return Menu.query.filter_by(title=path)
 
 
+def get_menu_index():
+    from models import Menu
+    s = set()
+    for item in Menu.query.all():
+        s.add(item.title)
+    return s
+
+
 """ Please dont remove this yet lol
 class Customer(db.Model):
     __tablename__ = 'customer'

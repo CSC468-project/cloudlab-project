@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template, jsonify, send_from_directory
-from database import get_menu_items
+from database import get_menu_items, get_menu_index
 
 app = Flask(__name__)
 
@@ -31,7 +31,8 @@ def my_form_post():
 
 @app.route('/menu')
 def menu_search():
-    return menu_index()
+    s = get_menu_index()
+    return render_template('menu_index.html', len=len(s), items=s)
 
 
 @app.route('/menu/<path:path>', methods=['GET'])
