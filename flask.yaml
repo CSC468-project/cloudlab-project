@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cloudcooked
+  name: cloudcooked-flask
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: cloud-cooked
+      app: cloud-cooked-flask
   template:
     metadata:
       labels:
-        app: cloud-cooked
+        app: cloud-cooked-flask
     spec:
       containers:
         - name: flask
