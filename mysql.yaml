@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cloudcooked
+  name: cloudcooked-mysql
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: cloud-cooked
+      app: cloud-cooked-mysql
   template:
     metadata:
       labels:
-        app: cloud-cooked
+        app: cloud-cooked-mysql
     spec:
       containers:
         - name: mysql
