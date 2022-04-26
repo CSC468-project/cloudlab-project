@@ -9,20 +9,20 @@ pipeline {
     stages {
         stage('Build') {
 			steps {
-                echo 'Building...'
-				sh '(cd DockerFiles;docker-compose build)'
+                echo 'Building mysql...'
+				sh '(cd DockerFiles;docker-compose build mysql)'
 			}
 		}
         stage('Upload') {
 			steps {
                 echo 'Uploading to Docker registry...'
-				sh '(cd DockerFiles;docker-compose push)'
+				sh '(cd DockerFiles;docker-compose push mysql)'
 			}
 		}
         stage('Deploy') {
 			steps {
 				echo 'Replacing running pods on k8s cluster'
-                sh 'kubectl --namespace="default" replace --force -f cloudcooked.yaml'
+                sh 'kubectl --namespace="default" replace --force -f mysql.yaml'
 			}
 	    }
     }	
