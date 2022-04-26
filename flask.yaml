@@ -22,3 +22,17 @@ spec:
               value: "sleep 90;python -c 'from database import init_db;init_db()';flask run --host=0.0.0.0"
           command: [ "bash" ]
           args: [ "-c", "$(ARGS)" ]
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cloudcooked-flask-service
+spec:
+  selector:
+    app: cloud-cooked-flask
+  ports:
+    - name: http
+      port: 36000
+      nodePort: 36000
+      targetPort: 5000
+  type: NodePort
