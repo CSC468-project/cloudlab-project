@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloudcooked
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cloud-cooked
+  template:
+    metadata:
+      labels:
+        app: cloud-cooked
+    spec:
+      containers:
+        - name: mysql
+          image: 192.168.1.1:5000/mysql
+          ports:
+            - containerPort: 3306
