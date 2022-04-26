@@ -10,19 +10,19 @@ pipeline {
         stage('Build') {
 			steps {
                 echo 'Building mysql...'
-				sh '(cd DockerFiles;docker-compose build mysql)'
+				sh '(cd DockerFiles;docker-compose build flask)'
 			}
 		}
         stage('Upload') {
 			steps {
                 echo 'Uploading to Docker registry...'
-				sh '(cd DockerFiles;docker-compose push mysql)'
+				sh '(cd DockerFiles;docker-compose push flask)'
 			}
 		}
         stage('Deploy') {
 			steps {
 				echo 'Replacing running pods on k8s cluster'
-                sh 'kubectl --namespace="default" replace --force -f mysql.yaml'
+                sh 'kubectl --namespace="default" replace --force -f flask.yaml'
 			}
 	    }
     }	

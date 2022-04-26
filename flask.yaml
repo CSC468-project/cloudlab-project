@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloudcooked
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cloud-cooked
+  template:
+    metadata:
+      labels:
+        app: cloud-cooked
+    spec:
+      containers:
+        - name: flask
+          image: 192.168.1.1:5000/flask
+          ports:
+            - containerPort: 5000
+          env:
+            - name: ARGS
+              value: "sleep 90;python -c 'from database import init_db;init_db()';flask run --host=0.0.0.0"
+          command: [ "bash" ]
+          args: [ "-c", "$(ARGS)" ]
