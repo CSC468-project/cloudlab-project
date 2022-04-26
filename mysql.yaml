@@ -17,3 +17,15 @@ spec:
           image: 192.168.1.1:5000/mysql
           ports:
             - containerPort: 3306
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cloudcooked-service-mysql
+spec:
+  selector:
+    app: cloud-cooked-mysql
+  ports:
+    - name: http
+      port: 3306
+      targetPort: 3306
