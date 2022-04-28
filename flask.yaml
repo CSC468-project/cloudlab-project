@@ -31,8 +31,7 @@ spec:
   selector:
     app: cloud-cooked-flask
   ports:
-    - type: ClusterIP
-      name: http
+    - name: http
       port: 35000
       nodePort: 35000
       targetPort: 5000
