@@ -23,6 +23,7 @@ kind: Service
 metadata:
   name: cloudcooked-service-mysql
 spec:
+  type: ClusterIP
   selector:
     app: cloud-cooked-mysql
   ports:
