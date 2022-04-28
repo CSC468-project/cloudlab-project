@@ -64,13 +64,11 @@ class Order(Base):
 class Menu(Base):
     __tablename__ = 'menu'
     id = Column(Integer, primary_key=True)
-    title = Column(String(100), nullable=False)
     name = Column(String(100), nullable=False, unique=True)
     price = Column(Float(precision=4), nullable=False)
     url = Column(String(1000), nullable=False)
 
-    def __init__(self, title, name, price, url):
-        self.title = title
+    def __init__(self, name, price, url):
         self.name = name
         self.price = price
         self.url = url

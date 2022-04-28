@@ -17,20 +17,20 @@ def init_db():
     # you will have to import them first before calling init_db()
     from models import Menu
     Base.metadata.create_all(bind=engine)
-    items = [Menu(title="Bobs%20Bakery", name="Pizza", price="3.50",
+    items = [Menu(name="Pizza", price="3.50",
                   url="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"),
-             Menu(title="Bobs%20Bakery", name="Fries", price="2.50",
+             Menu(name="Fries", price="2.50",
                   url="https://images.unsplash.com/photo-1518013431117-eb1465fa5752?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"),
-             Menu(title="Bobs%20Bakery", name="Soda", price="1.75",
+             Menu(name="Soda", price="1.75",
                   url="https://images.unsplash.com/photo-1581636625402-29b2a704ef13?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=776&q=80")]
     for item in items:
         db_session.add(item)
     db_session.commit()
 
 
-def get_menu_items(path):
+def get_menu_items():
     from models import Menu
-    return Menu.query.filter_by(title=path)
+    return Menu.query.all()
 
 
 def get_menu_index():

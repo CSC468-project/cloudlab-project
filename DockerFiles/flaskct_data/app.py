@@ -31,14 +31,8 @@ def my_form_post():
 
 @app.route('/menu')
 def menu_search():
-    s = get_menu_index()
-    return render_template('menu_index.html', len=len(s), items=s)
-
-
-@app.route('/menu/<path:path>', methods=['GET'])
-def menu_route(path):
-    items = get_menu_items(path)
-    return render_template('menu.html', title=path, len=len(items), items=items)
+    items = get_menu_items()
+    return render_template('menu.html', len=len(items), items=items)
 
 
 @app.route('/static/<path:path>', methods=['GET'])
