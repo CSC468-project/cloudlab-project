@@ -27,6 +27,7 @@ spec:
   selector:
     app: cloud-cooked-mysql
   ports:
-    - name: sql
+    - name: mysql
       port: 3306
+      protocol: TCP
       targetPort: 3306
