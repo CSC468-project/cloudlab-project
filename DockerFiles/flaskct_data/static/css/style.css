@@ -8,10 +8,13 @@
     font-weight: bold;
     font-size: xx-large;
 }
-.imgContainer{
-    float:center;
-    margin: 1px;
-    display:inline-block
+.img-parent-box {
+  font-size: 0;
 }
 
+.img-box {
+  display: inline-block;
+  width: 50%;
+  font-size: initial;
+}
 
