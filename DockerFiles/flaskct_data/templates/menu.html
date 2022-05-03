@@ -41,11 +41,15 @@
         <form action="/order_submitted">
             {% for i in range(0, len) %}
                 <label for="{{ items[i].name }}_sel">{{ items[i].name }}: ${{ items[i].price }}</label>
-                <span>
                 <img src="/static/{{ items[i].url }}" alt="picture of {{ items[i].name }}" class="img-thumbnail">
-                <p>Select:</p><input type="checkbox" id="{{ items[i].name }}_sel" name="{{ items[i].name }}_sel">
-                <p>Quantity:</p><input type="number" id="{{ items[i].name }}_quan" name="{{ items[i].name }}_quan">
-                </span>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"
+                           name="{{ items[i].name }}_sel">
+                    <label class="form-check-label" for="inlineCheckbox1">Select {{ items[i].name }}</label>
+                    <input class="form-check-input" type="number" id="inlineCheckbox1" value="option1"
+                           name="{{ items[i].name }}_quan">
+                    <label class="form-check-label" for="inlineCheckbox1">Quantity {{ items[i].name }}</label>
+                </div>
             {% endfor %}
             <input type="submit" value="Submit">
         </form>
