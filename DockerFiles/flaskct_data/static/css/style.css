@@ -8,27 +8,16 @@
     font-weight: bold;
     font-size: xx-large;
 }
-.image123{
-  max-width:250px;
-  margin:0px auto;
-}
-.imgContainer{
-  float:left;
-  width:48%;
-  padding:10px 0px;
-}
-.imgContainer img{
-  width:100%;
-  height:auto;
-  max-width:100%;
-  max-height:100%;
-  margin:0px auto;
-}
-.imgContainer p{
-  text-align:center;
-  background-color:#ff0000;
-  color:#ffffff;
-  padding:5px 0px;
-  margin:5px 0px;
+/* Three image containers (use 25% for four, and 50% for two, etc) */
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 5px;
 }
 
+/* Clear floats after image containers */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
