@@ -8,4 +8,11 @@
     font-weight: bold;
     font-size: xx-large;
 }
+.imgContainer{
+    float:center;
+    margin: 5px;
+    border: 5px solid #555;
+    display:inline-block
+}
+
 
