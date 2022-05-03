@@ -38,14 +38,34 @@
         <h1>Menu for Today</h1>
     </div>
     <section class="py-5">
-        <form action="/menu">
-            {% for i in range(0, len) %}
-                <label for="{{ items[i].name }}_sel">{{ items[i].name }}: {{ items[i].price }}</label><br>
-                <p>Select:</p><input type="checkbox" id="{{ items[i].name }}_sel" name="{{ items[i].name }}_sel">
-                <p>Quantity:</p><input type="number" id="{{ items[i].name }}_quan" name="{{ items[i].name }}_quan">
-            {% endfor %}
-            <input type="submit" value="Submit">
-        </form>
+        {% for i in range(0, len) %}
+            <div class="col mb-5">
+                <div class="card h-100">
+                    <!-- Sale badge-->
+                    <div class="badge bg-dark text-white position-absolute"
+                         style="top: 0.5rem; right: 1rem">RESTAURANT
+                        Sale
+                    </div>
+                    <!-- Product image-->
+                    <img class="card-img-top" src="{{ items[i].url }}"
+                         alt="Picture of {{ items[i].name }}"/>
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <h5 class="fw-bolder">{{ items[i].name }}</h5>
+                            <!-- Product price-->
+                            ${{ items[i].price }}
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to
+                            cart</a></div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
     </section>
 </section>
 </body>
