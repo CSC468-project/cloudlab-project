@@ -1,0 +1,36 @@
+input, label {
+    margin: 5px 5px;
+}
+
+.form-group {
+    margin: 30px auto;
+    width: 450px;
+}
+
+.form-control {
+    float: left;
+}
+
+#inputStreet {
+    width: 100%;
+}
+
+#inputCity {
+    width: 50%;
+}
+
+#inputState {
+    width: 15%;
+}
+
+#inputZip {
+    width: 28%;
+}
+
+#inputCounty {
+    width: 45%;
+}
+
+#inputCountry {
+    width: 50%;
+}
