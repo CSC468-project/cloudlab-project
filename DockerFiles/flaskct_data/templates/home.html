@@ -1,43 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <title>Menu for {{ title }}</title>
-    <!-- bootstrap incl -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="icon" href="/static/cc_logo.png" type="image/png">
+    <title>Cloud Pie Services</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-    <!-- Navbar (Sits on top) -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">
-            <img src="/static/cc_logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
-            Cloud Cooked
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="/menu">Menu <span class="sr-only">(current)</span> </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
 </head>
 
+<script>
+
+function myFunction() {
+var text1= $('#text1').val();
+var text2= $('#text2').val();
+  $.ajax({
+              url: "/join",
+              type: "POST",
+              data: {text1:text1,
+              text2:text2}
+
+          }).done(function(response) {
+
+            var html= "<br><br><br><p> <b> RESULT : <b><p>";
+
+            response =response.result;
+                 $.each(response,function(key,val){
+                 console.log(val);
+                    html+="<p>"+val+"<p>"
+
+                });
+                html +="<br>";
+                $(".show-data").append(html);
+            });
+};
+
+  </script>
 <body>
-<section class="container">
-    <div class="jumbotron">
-        <h1>Menu for $TODO </h1>
-        <p>We have great food here</p>
+    <p>
+        Order Information<br><br>
+
+            Name: <input type="text" id="text1" name="text1"><br><br>
+            Address: <input type="text" id="text2" name="text2"><br><br>
+            <button id="clicked" onclick="myFunction()">Submit</button>
+        </p>
+    <div class="show-data" >
+
     </div>
-    <p>On the menu today:</p>
-    </section>
 </body>
+</html>
