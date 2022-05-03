@@ -34,6 +34,10 @@ def menu_search():
     items = get_menu_items()
     return render_template('menu.html', len=len(items), items=items)
 
+@app.route('/order_submitted')
+def order_submitted():
+    return render_template('order_submitted.html')
+
 
 @app.route('/static/<path:path>', methods=['GET'])
 def static_resources(path):
