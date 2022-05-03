@@ -29,7 +29,7 @@ def my_form_post():
     return jsonify(result=result)
 
 
-@app.route('/menu')
+@app.route('/menu', methods=['GET', 'POST'])
 def menu_search():
     items = get_menu_items()
     return render_template('menu.html', len=len(items), items=items)
