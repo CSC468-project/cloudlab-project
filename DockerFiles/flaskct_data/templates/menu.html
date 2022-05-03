@@ -38,11 +38,12 @@
         <h1>Menu for Today</h1>
     </div>
     <section class="py-5">
-        <form action="/menu">
+        <form action="/order_submitted">
             {% for i in range(0, len) %}
-                <label for="{{ items[i].name }}_sel">{{ items[i].name }}: {{ items[i].price }}</label><br>
+                <label for="{{ items[i].name }}_sel">{{ items[i].name }}: ${{ items[i].price }}</label><br>
                 <p>Select:</p><input type="checkbox" id="{{ items[i].name }}_sel" name="{{ items[i].name }}_sel">
                 <p>Quantity:</p><input type="number" id="{{ items[i].name }}_quan" name="{{ items[i].name }}_quan">
+                <br>
             {% endfor %}
             <input type="submit" value="Submit">
         </form>
