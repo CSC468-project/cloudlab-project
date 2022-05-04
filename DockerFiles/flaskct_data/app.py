@@ -45,7 +45,7 @@ def order_submitted():
 
 
 @app.route('/orders', methods=['GET', 'POST'])
-def order_submitted():
+def orders():
     if request.method == 'POST':
         print(request.form, file=sys.stderr)
         add_order(request.form)
