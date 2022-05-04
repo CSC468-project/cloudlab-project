@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Menu for {{ title }}</title>
+    <title>Active Orders</title>
     <!-- bootstrap incl -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -38,33 +38,43 @@
 <body>
 <section class="container">
     <div class="jumbotron">
-        <h1>Menu for Today</h1>
+        <h1>Active Orders</h1>
     </div>
     <section class="py-5">
         {% for i in range(0, len) %}
             <div class="col mb-5">
                 <div class="card h-100">
                     <!-- Sale badge-->
-                    <div class="badge bg-dark text-white position-absolute"
+                    <div class="bg-dark text-white position-absolute"
                          style="top: 0.5rem; right: 1rem">RESTAURANT
                         Sale
                     </div>
-                    <!-- Product image-->
-                    <img class="card-img-top" src="{{ items[i].url }}"
-                         alt="Picture of {{ items[i].name }}"/>
                     <!-- Product details-->
                     <div class="card-body p-4">
-                        <div class="text-center">
-                            <!-- Product name-->
-                            <h5 class="fw-bolder">{{ items[i].name }}</h5>
-                            <!-- Product price-->
-                            ${{ items[i].price }}
+                        <div class="row">
+                            <div class="span1">
+                                <!-- Product name-->
+                                <h4 class="fw-bolder">Customer Information:</h4>
+                                <p>{{ items[i].name }}</p>
+                                <p>{{ items[i].address }}</p>
+                                <p>{{ items[i].city }}</p>
+                                <p>{{ items[i].zip }}</p>
+                                <p>{{ items[i].email }}</p>
+                                <p>{{ items[i].phone_number }}</p>
+                                <p>{{ items[i].email }}</p>
+                                <!-- Product price-->
+                                ${{ items[i].price }}
+                            </div>
+                            <div class="span2">
+                                <h4 class="fw-bolder">Order Information</h4>
+                                <p>{{ items[i].order }}</p>
+                            </div>
                         </div>
                     </div>
                     <!-- Product actions-->
                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to
-                            cart</a></div>
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Select for
+                            Delivery</a></div>
                     </div>
                 </div>
             </div>
