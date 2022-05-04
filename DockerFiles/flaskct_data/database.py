@@ -39,10 +39,12 @@ def get_menu_items():
 
 def add_order(order):
     from models import Customer
-    to_add = Customer(random.randint(0, 100000000), order.form.get("name"), order.form.get("email"),
-                      order.form.get("phone"),
-                      order.form.get("street"), order.form.get("city"), order.form.get("state"),
-                      order.form.get("zip"))
+    to_add = Customer(random.randint(0, 100000000), order.get("name"), order.get("email"),
+                      order.get("phone"),
+                      order.get("street"), order.get("city"), order.get("state"),
+                      order.get("zip"))
+    db_session.add(to_add)
+    db_session.commit()
 
 
 def get_menu_index():

@@ -44,11 +44,22 @@ def order_submitted():
     return render_template('order_submitted.html')
 
 
+@app.route('/orders', methods=['GET', 'POST'])
+def orders():
+    if request.method == 'POST':
+        print(request.form, file=sys.stderr)
+        add_order(request.form)
+    return render_template('orders.html')
+
+
 @app.route('/static/<path:path>', methods=['GET'])
 def static_resources(path):
     return send_from_directory('static', path)
 
+
 import urllib.parse
+
+
 def URL_builder(addresses):
     # Takes in an addresses as a ordered list of strings and returns a link to google maps for the route
     stops = len(addresses)
@@ -62,11 +73,9 @@ def URL_builder(addresses):
         # Adds the parased string to URL excluding the trailing '|'
         url += "&waypoints=" + urllib.parse.quote(waypoints[:-1])
     # ensures google maps will always know to make it driving instructions
-    url += "&travelmode=driving"    
+    url += "&travelmode=driving"
 
     return url
-
-
 
 
 if __name__ == '__main__':
