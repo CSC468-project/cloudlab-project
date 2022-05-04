@@ -39,7 +39,7 @@
         <h1>Menu for Today</h1>
     </div>
     <section class="py-5">
-        <form action="/order_submitted" method="post">
+        <form action="/order_submitted" method="POST">
             {% for i in range(0, len) %}
                 <label for="{{ items[i].name }}_sel">{{ items[i].name }}: ${{ items[i].price }}</label>
                 <img src="/static/{{ items[i].url }}" alt="picture of {{ items[i].name }}" class="img-thumbnail">

@@ -39,7 +39,8 @@ def menu_search():
 @app.route('/order_submitted', methods=['GET', 'POST'])
 def order_submitted():
     if request.method == 'POST':
-        print(request.json, file=sys.stderr)
+        print(request.form, file=sys.stderr)
+        
     return render_template('order_submitted.html')
 
 
