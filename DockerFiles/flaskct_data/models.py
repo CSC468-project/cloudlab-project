@@ -23,10 +23,11 @@ class Customer(Base):
     zip = Column(String(50), nullable=False)
     email = Column(String(50), nullable=False, unique=True)
     phone_number = Column(String(50), nullable=False, unique=True)
+    order = Column(String(10000), nullable=False)
 
     orders = relationship('Order', backref='customer')
 
-    def __init__(self, id, name, email, phone_number, street, city, state, zip):
+    def __init__(self, id, name, email, phone_number, street, city, state, zip, order):
         self.id = id
         self.name = name
         self.email = email
@@ -35,6 +36,7 @@ class Customer(Base):
         self.city = city
         self.state = state
         self.zip = zip
+        self.order = order
 
     def __repr__(self):
         return f'<User {self.name!r}>'
