@@ -49,10 +49,24 @@ def static_resources(path):
     return send_from_directory('static', path)
 
 import urllib.parse
-def URL_builder(address):
-    # Takes in an address as a string and returns a link to google maps for the address
-    url = "https://www.google.com/maps/dir/?api=1&destination={}&travelmode=driving".format(urllib.parse.quote(address))
+def URL_builder(addresses):
+    # Takes in an addresses as a ordered list of strings and returns a link to google maps for the route
+    stops = len(addresses)
+    destination = urllib.parse.quote(addresses[-1])
+    waypoints = ""
+    url = "https://www.google.com/maps/dir/?api=1&destination={}".format(destination)
+    if stops > 1:
+        # Creates a string with addresses separated by the '|' character
+        for stop in addresses[:-1]:
+            waypoints += stop + '|'
+        # Adds the parased string to URL excluding the trailing '|'
+        url += urllib.parse.quote(waypoints[:-1])
+    # ensures google maps will always know to make it driving instructions
+    url += "&travelmode=driving"    
+
     return url
+
+
 
 
 if __name__ == '__main__':
