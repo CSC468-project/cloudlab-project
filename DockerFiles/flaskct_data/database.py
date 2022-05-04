@@ -5,7 +5,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
-from models import *
+from models import Customer, Menu, Order
 
 engine = create_engine(
     'mysql://root:mysql_root_123@' + os.getenv("CLOUDCOOKED_SERVICE_MYSQL_SERVICE_HOST") + ':3306/db')
