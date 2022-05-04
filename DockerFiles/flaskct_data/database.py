@@ -50,7 +50,8 @@ def add_order(order):
                       street=order.get("street"),
                       city=order.get("city"),
                       state=order.get("state"),
-                      zip=order.get("zip"))
+                      zip=order.get("zip"),
+                      order="" + order.get("Pizza_quan") + "_" + order.get("Fries_quan") + "_" + order.get("Soda_quen"))
     db_session.add(to_add)
     db_session.commit()
 
