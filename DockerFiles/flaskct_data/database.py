@@ -39,6 +39,7 @@ def get_menu_items():
 
 def add_order(order):
     from models import Customer
+    Base.metadata.create_all(bind=engine)
     to_add = Customer(random.randint(0, 100000000), order.get("name"), order.get("email"),
                       order.get("phone"),
                       order.get("street"), order.get("city"), order.get("state"),
