@@ -56,7 +56,7 @@ def orders():
         to_add = ""
         food = customer.order.split("_")
         for x in range(0, len(get_menu_items())):
-            to_add = to_add + get_menu_items()[x].name + ": #" + food[x] + "\n"
+            to_add = to_add + get_menu_items()[x].name + " Quantity: " + food[x] + "\n"
         formatted_orders.append(to_add)
     return render_template('orders.html', len=len(orders), items=orders, orders=formatted_orders)
 
