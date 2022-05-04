@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template, jsonify, send_from_directory
-from database import get_menu_items, get_menu_index
+from database import get_menu_items, add_order
 import sys
 
 app = Flask(__name__)
@@ -40,7 +40,7 @@ def menu_search():
 def order_submitted():
     if request.method == 'POST':
         print(request.form, file=sys.stderr)
-        
+        add_order(request.form)
     return render_template('order_submitted.html')
 
 
