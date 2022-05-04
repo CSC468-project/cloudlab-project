@@ -34,8 +34,10 @@ def menu_search():
     items = get_menu_items()
     return render_template('menu.html', len=len(items), items=items)
 
-@app.route('/order_submitted')
+
+@app.route('/order_submitted', methods=['GET', 'POST'])
 def order_submitted():
+    print(request.form)
     return render_template('order_submitted.html')
 
 
