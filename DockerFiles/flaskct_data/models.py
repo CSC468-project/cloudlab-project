@@ -12,24 +12,24 @@ from sqlalchemy.types import DateTime, Float
 class Customer(Base):
     __tablename__ = 'customer'
     id = Column(Integer, primary_key=True)
-    first_name = Column(String(50), nullable=False)
-    last_name = Column(String(50), nullable=False)
+    name = Column(String(50), nullable=False)
     address = Column(String(500), nullable=False)
     city = Column(String(50), nullable=False)
-    postcode = Column(String(50), nullable=False)
+    zip = Column(String(50), nullable=False)
     email = Column(String(50), nullable=False, unique=True)
     phone_number = Column(String(50), nullable=False, unique=True)
 
     orders = relationship('Order', backref='customer')
 
-    def __init__(self, first_name, last_name, address, city, postcode, email, phone_number):
-        self.first_name = first_name
-        self.last_name = last_name
-        self.address = address
-        self.city = city
-        self.postcode = postcode
+    def __init__(self, id, name, email, phone_number, street, city, state, zip):
+        self.id = id
+        self.name = name
         self.email = email
         self.phone_number = phone_number
+        self.street = street
+        self.city = city
+        self.state = state
+        self.zip = zip
 
     def __repr__(self):
         return f'<User {self.name!r}>'

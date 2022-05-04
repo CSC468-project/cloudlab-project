@@ -1,4 +1,5 @@
 import os
+import random
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -34,6 +35,14 @@ def init_db():
 def get_menu_items():
     from models import Menu
     return Menu.query.all()
+
+
+def add_order(order):
+    from models import Customer
+    to_add = Customer(random.randint(0, 100000000), order.form.get("name"), order.form.get("email"),
+                      order.form.get("phone"),
+                      order.form.get("street"), order.form.get("city"), order.form.get("state"),
+                      order.form.get("zip"))
 
 
 def get_menu_index():
