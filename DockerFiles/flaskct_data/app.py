@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template, jsonify, send_from_directory
 from database import get_menu_items, get_menu_index
+import sys
 
 app = Flask(__name__)
 
@@ -37,9 +38,9 @@ def menu_search():
 
 @app.route('/order_submitted', methods=['GET', 'POST'])
 def order_submitted():
-    print("test")
+    print("test", file=sys.stderr)
     print(request)
-    print("test2")
+    print("test2", file=sys.stderr)
     return render_template('order_submitted.html')
 
 
