@@ -43,6 +43,8 @@ def add_order(order):
                       order.get("phone"),
                       order.get("street"), order.get("city"), order.get("state"),
                       order.get("zip"))
+    db_session.add(to_add)
+    db_session.commit()
 
 
 def get_menu_index():
