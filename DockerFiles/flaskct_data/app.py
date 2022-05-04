@@ -38,7 +38,7 @@ def menu_search():
 
 @app.route('/order_submitted', methods=['GET', 'POST'])
 def order_submitted():
-    print(request.args, file=sys.stderr)
+    print(request.args.getlist(), file=sys.stderr)
     return render_template('order_submitted.html')
 
 
