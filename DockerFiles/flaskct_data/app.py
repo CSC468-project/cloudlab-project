@@ -1,5 +1,5 @@
-from flask import Flask, request, render_template, jsonify, send_from_directory, get_order_items
-from database import get_menu_items, add_order
+from flask import Flask, request, render_template, jsonify, send_from_directory
+from database import get_menu_items, add_order, get_order_items
 import sys
 
 app = Flask(__name__)
