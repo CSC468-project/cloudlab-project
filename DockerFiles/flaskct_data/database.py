@@ -43,10 +43,14 @@ def get_order_items():
 
 def add_order(order):
     Base.metadata.create_all(bind=engine)
-    to_add = Customer(random.randint(0, 100000000), order.get("name"), order.get("email"),
-                      order.get("phone"),
-                      order.get("street"), order.get("city"), order.get("state"),
-                      order.get("zip"))
+    to_add = Customer(id=random.randint(0, 100000),
+                      name=order.get("name"),
+                      email=order.get("email"),
+                      phone_number=order.get("phone"),
+                      street=order.get("street"),
+                      city=order.get("city"),
+                      state=order.get("state"),
+                      zip=order.get("zip"))
     db_session.add(to_add)
     db_session.commit()
 
