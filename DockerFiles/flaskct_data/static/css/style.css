@@ -12,8 +12,7 @@
   display: block;
 }
 
-.images {
-  display: inline-block;
-  max-width: 20%;
-  margin: 0 2.5%;
+.inline-block {
+    display: inline-block;
+    margin: 0 40px 0 0;
 }
