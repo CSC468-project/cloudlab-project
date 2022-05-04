@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, jsonify, send_from_directory
+from flask import Flask, request, render_template, jsonify, send_from_directory, get_order_items
 from database import get_menu_items, add_order
 import sys
 
@@ -49,7 +49,9 @@ def orders():
     if request.method == 'POST':
         print(request.form, file=sys.stderr)
         add_order(request.form)
-    return render_template('orders.html')
+
+    orders = get_order_items()
+    return render_template('orders.html', len=len(orders), items=orders)
 
 
 @app.route('/static/<path:path>', methods=['GET'])

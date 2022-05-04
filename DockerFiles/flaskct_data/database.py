@@ -37,9 +37,14 @@ def get_menu_items():
     return Menu.query.all()
 
 
+def get_order_items():
+    from models import Customer
+    return Customer.query.all()
+
+
 def add_order(order):
     from models import Customer
-    Customer.metadata.create_all(bind=engine)
+    Base.metadata.create_all(bind=engine)
     to_add = Customer(random.randint(0, 100000000), order.get("name"), order.get("email"),
                       order.get("phone"),
                       order.get("street"), order.get("city"), order.get("state"),
