@@ -32,7 +32,7 @@ class Customer(Base):
         self.name = name
         self.email = email
         self.phone_number = phone_number
-        self.street = street
+        self.address = street
         self.city = city
         self.state = state
         self.zip = zip
