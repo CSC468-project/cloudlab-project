@@ -39,14 +39,7 @@ def menu_search():
 @app.route('/order_submitted', methods=['GET', 'POST'])
 def order_submitted():
     if request.method == 'POST':
-        pizza_quan = request.form['pizza_quan']
-        autocomplete = request.form['autocomplete']
-        inputCity = request.form['inputCity']
-        inputState = request.form['inputState']
-        inputZip = request.form['inputZip']
-        inputCounty = request.form['inputCounty']
-        inputCountry = request.form['inputCountry']
-        print(pizza_quan, autocomplete, inputCity, inputState, inputZip, inputCounty, inputCountry, file=sys.stderr)
+        print(request.json, file=sys.stderr)
     return render_template('order_submitted.html')
 
 
