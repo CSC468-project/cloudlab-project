@@ -8,11 +8,16 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import relationship
 from sqlalchemy.types import DateTime, Float
 
+order_menu = Table('order_menu', Base.metadata,
+                   Column('order_id', Integer, ForeignKey('order.id'), primary_key=True),
+                   Column('menu_id', Integer, ForeignKey('menu.id'), primary_key=True)
+                   )
+
 
 class Customer(Base):
     __tablename__ = 'customer'
     id = Column(Integer, primary_key=True)
-    name = Column(String(50), nullable=False)
+    name = Column(String(100), nullable=False)
     address = Column(String(500), nullable=False)
     city = Column(String(50), nullable=False)
     zip = Column(String(50), nullable=False)
@@ -33,12 +38,6 @@ class Customer(Base):
 
     def __repr__(self):
         return f'<User {self.name!r}>'
-
-
-order_menu = Table('order_menu', Base.metadata,
-                   Column('order_id', Integer, ForeignKey('order.id'), primary_key=True),
-                   Column('menu_id', Integer, ForeignKey('menu.id'), primary_key=True)
-                   )
 
 
 class Order(Base):
