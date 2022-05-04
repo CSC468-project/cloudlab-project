@@ -71,7 +71,7 @@ def URL_builder(addresses):
         for stop in addresses[:-1]:
             waypoints += stop + '|'
         # Adds the parased string to URL excluding the trailing '|'
-        url += urllib.parse.quote(waypoints[:-1])
+        url += "&waypoints=" + urllib.parse.quote(waypoints[:-1])
     # ensures google maps will always know to make it driving instructions
     url += "&travelmode=driving"
 
