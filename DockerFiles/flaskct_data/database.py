@@ -5,6 +5,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
+from models import *
+
 engine = create_engine(
     'mysql://root:mysql_root_123@' + os.getenv("CLOUDCOOKED_SERVICE_MYSQL_SERVICE_HOST") + ':3306/db')
 
@@ -19,7 +21,6 @@ def init_db():
     # import all modules here that might define models so that
     # they will be registered properly on the metadata.  Otherwise
     # you will have to import them first before calling init_db()
-    from models import Menu
     Base.metadata.create_all(bind=engine)
     items = [Menu(name="Pizza", price="3.50",
                   url="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"),
@@ -33,17 +34,14 @@ def init_db():
 
 
 def get_menu_items():
-    from models import Menu
     return Menu.query.all()
 
 
 def get_order_items():
-    from models import Customer
     return Customer.query.all()
 
 
 def add_order(order):
-    from models import Customer
     Base.metadata.create_all(bind=engine)
     to_add = Customer(random.randint(0, 100000000), order.get("name"), order.get("email"),
                       order.get("phone"),
