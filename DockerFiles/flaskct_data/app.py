@@ -48,6 +48,12 @@ def order_submitted():
 def static_resources(path):
     return send_from_directory('static', path)
 
+import urllib.parse
+def URL_builder(address):
+    # Takes in an address as a string and returns a link to google maps for the address
+    url = "https://www.google.com/maps/dir/?api=1&destination={}&travelmode=driving".format(urllib.parse.quote(address))
+    return url
+
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0")
