@@ -51,7 +51,14 @@ def orders():
         add_order(request.form)
 
     orders = get_order_items()
-    return render_template('orders.html', len=len(orders), items=orders)
+    formatted_orders = []
+    for item in orders:
+        to_add = ""
+        food = item.split("_")
+        for menu_item in get_menu_items():
+            to_add = to_add + menu_item + ": #" + item + "\n"
+        formatted_orders.append(to_add)
+    return render_template('orders.html', len=len(orders), items=orders, orders=formatted_orders)
 
 
 @app.route('/static/<path:path>', methods=['GET'])
