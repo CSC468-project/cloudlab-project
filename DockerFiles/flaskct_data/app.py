@@ -55,13 +55,12 @@ def orders():
                     orders.append(key.split("_")[1])
 
         orders_for_route = get_orders_by_id(orders)
-        remove_orders_by_id(orders)
 
         route_list = []
         for order in orders_for_route:
             route_list.append("{} {} {}".format(order.address, order.city, order.zip))
 
-        print(orders, file=sys.stderr)
+        remove_orders_by_id(orders)
         return URL_builder(["Sykes"])
 
     orders = get_order_items()
