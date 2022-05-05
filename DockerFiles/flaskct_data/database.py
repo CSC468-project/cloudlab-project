@@ -59,7 +59,7 @@ def add_order(order):
 def get_orders_by_id(order_ids):
     return_orders = []
     for id in order_ids:
-        return_orders.append(Customer.query.filter_by(id=id))
+        return_orders.append(Customer.query.filter_by(id=id).one())
 
     return return_orders
 
