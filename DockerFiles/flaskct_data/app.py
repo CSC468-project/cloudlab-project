@@ -48,7 +48,12 @@ def order_submitted():
 def orders():
     if request.method == 'POST':
         print(request.form, file=sys.stderr)
-        add_order(request.form)
+        orders = []
+        for key in request.form:
+            if "orderid" in key:
+                orders.append(key.split("_")[1])
+
+        return URL_builder(["Sykes"])
 
     orders = get_order_items()
     formatted_orders = []

@@ -41,39 +41,42 @@
         <h1>Active Orders</h1>
     </div>
     <section class="py-5">
-        {% for i in range(0, len) %}
-            <div class="col mb-5">
-                <div class="card h-100">
-                    <!-- Product details-->
-                    <div class="card-body p-4">
-                        <div class="row">
-                            <div class="span1">
-                                <!-- Product name-->
-                                <h4 class="fw-bolder">Customer Information:</h4>
-                                <p>Name: {{ items[i].name }}</p>
-                                <p>Street: {{ items[i].address }}</p>
-                                <p>City: {{ items[i].city }}</p>
-                                <p>Zip: {{ items[i].zip }}</p>
-                                <p>Email: {{ items[i].email }}</p>
-                                <p>Phone Number: {{ items[i].phone_number }}</p>
-                            </div>
-                            <div class="span2">
-                                <br>
-                            </div>
-                            <div class="span3 pull-right">
-                                <h4 class="fw-bolder">Order Information</h4>
-                                <p>{{ orders[i] }}</p>
+        <form action="/orders" method="POST">
+            {% for i in range(0, len) %}
+                <div class="col mb-5">
+                    <div class="card h-100">
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="row">
+                                <div class="span1">
+                                    <!-- Product name-->
+                                    <h4 class="fw-bolder">Customer Information:</h4>
+                                    <p>Name: {{ items[i].name }}</p>
+                                    <p>Street: {{ items[i].address }}</p>
+                                    <p>City: {{ items[i].city }}</p>
+                                    <p>Zip: {{ items[i].zip }}</p>
+                                    <p>Email: {{ items[i].email }}</p>
+                                    <p>Phone Number: {{ items[i].phone_number }}</p>
+                                </div>
+                                <div class="span2">
+                                    <br>
+                                </div>
+                                <div class="span3 pull-right">
+                                    <h4 class="fw-bolder">Order Information</h4>
+                                    <p>{{ orders[i] }}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- Product actions-->
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Select for
-                            Delivery</a></div>
+                        <!-- Product actions-->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Select for
+                                Delivery</a>
+                                <input class="checkbox" name="orderid_{{ items[i].id }}"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        </form>
     </section>
 </section>
 </body>
