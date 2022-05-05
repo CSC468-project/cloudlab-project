@@ -66,7 +66,7 @@ def get_orders_by_id(order_ids):
 
 def remove_orders_by_id(order_ids):
     for id in order_ids:
-        Customer.query.filter_by(id=id).remove()
+        Customer.query.filter_by(id=id).delete()
 
     db_session.commit()
 
