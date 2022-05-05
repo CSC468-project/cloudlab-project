@@ -41,17 +41,34 @@
         <h1>Welcome to Cloud Cooked </h1>
         <p>We have great food here</p>
     </div>
-    <div>
-        <img src="/static/images/restaurantdecor.jpg" height=200 width=200 style="display:inline-block;">
-        <p> image one </p>
-    </div>
-    <div>
-        <img src="/static/images/pizzachef.jpg" height=200 width=200 style="display:inline-block;">
-        <p> image two </p>
-    </div>
-    <div>
-        <img src="/static/images/delivery.jpg" height=200 width=200 style="display:inline-block;">
-        <p> image three </p>
-    </div>
+        <style>
+         * {
+            box-sizing: border-box;
+            }
+        .imageColumn {
+            float: left;
+            width: 33%;
+            padding: 5px;
+            }
+        h1{
+            text-align: center;
+            }
+        </style>
+        <center>
+            <div class="alignRow">
+                <div class="imageColumn">
+                    <img src="/static/images/restaurantdecor.jpg" height=200 width=200 style="display:inline-block;">
+                    <p>image 1</p>
+                </div>
+                <div class="imageColumn">
+                    <img src="/static/images/pizzachef.jpg" height=200 width=200 style="display:inline-block;">
+                    <p>image 2</p>
+                </div>
+                <div class="imageColumn">
+                    <img src="/static/images/delivery.jpg" height=200 width=200 style="display:inline-block;">
+                    <p>image 3</p>
+                </div>
+            </div>>
+        </center>
 </section>
 </body>
