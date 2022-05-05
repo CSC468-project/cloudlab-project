@@ -51,8 +51,10 @@ def orders():
         orders = []
         for key in request.form:
             if "orderid" in key:
-                orders.append(key.split("_")[1])
+                if request.form.get(key) == "on":
+                    orders.append(key.split("_")[1])
 
+        print(orders, file=sys.stderr)
         return URL_builder(["Sykes"])
 
     orders = get_order_items()
