@@ -21,8 +21,8 @@ class Customer(Base):
     address = Column(String(500), nullable=False)
     city = Column(String(50), nullable=False)
     zip = Column(String(50), nullable=False)
-    email = Column(String(50), nullable=False, unique=True)
-    phone_number = Column(String(50), nullable=False, unique=True)
+    email = Column(String(50), nullable=False)
+    phone_number = Column(String(50), nullable=False)
     order = Column(String(10000), nullable=False)
 
     orders = relationship('Order', backref='customer')
