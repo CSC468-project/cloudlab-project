@@ -1,3 +1,4 @@
+from django.shortcuts import redirect
 from flask import Flask, request, render_template, jsonify, send_from_directory
 from database import get_menu_items, add_order, get_order_items, get_orders_by_id, remove_orders_by_id
 import sys
@@ -61,7 +62,7 @@ def orders():
             route_list.append("{} {} {}".format(order.address, order.city, order.zip))
 
         remove_orders_by_id(orders)
-        return URL_builder(route_list)
+        return redirect(URL_builder(route_list), code=302)
 
     orders = get_order_items()
     formatted_orders = []
