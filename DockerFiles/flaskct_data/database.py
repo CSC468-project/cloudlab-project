@@ -56,6 +56,21 @@ def add_order(order):
     db_session.commit()
 
 
+def get_orders_by_id(order_ids):
+    return_orders = []
+    for id in order_ids:
+        return_orders.append(Customer.query.filter_by(id=id))
+
+    return return_orders
+
+
+def remove_orders_by_id(order_ids):
+    for id in order_ids:
+        Customer.query.filter_by(id=id).remove()
+
+    db_session.commit()
+
+
 def get_menu_index():
     from models import Menu
     s = set()

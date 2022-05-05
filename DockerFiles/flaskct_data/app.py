@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template, jsonify, send_from_directory
-from database import get_menu_items, add_order, get_order_items
+from database import get_menu_items, add_order, get_order_items, get_orders_by_id, remove_orders_by_id
 import sys
 
 app = Flask(__name__)
@@ -53,6 +53,13 @@ def orders():
             if "orderid" in key:
                 if request.form.get(key) == "on":
                     orders.append(key.split("_")[1])
+
+        orders_for_route = get_orders_by_id(orders)
+        remove_orders_by_id(orders)
+
+        route_list = []
+        for order in orders_for_route:
+            route_list.append("{} {} {}".format(order.address, order.city, order.zip))
 
         print(orders, file=sys.stderr)
         return URL_builder(["Sykes"])
