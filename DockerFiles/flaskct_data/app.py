@@ -61,7 +61,7 @@ def orders():
             route_list.append("{} {} {}".format(order.address, order.city, order.zip))
 
         remove_orders_by_id(orders)
-        return URL_builder(["Sykes"])
+        return URL_builder(route_list)
 
     orders = get_order_items()
     formatted_orders = []
