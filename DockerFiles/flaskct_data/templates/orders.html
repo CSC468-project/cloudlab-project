@@ -69,13 +69,12 @@
                         </div>
                         <!-- Product actions-->
                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Select for
-                                Delivery</a>
-                                <input class="checkbox" name="orderid_{{ items[i].id }}"></div>
-                        </div>
+                            <p>Select for Delivery</p>
+                            <input type="checkbox" class="checkbox" name="orderid_{{ items[i].id }}"></div>
                     </div>
                 </div>
             {% endfor %}
+            <input type="submit" value="Generate Route">
         </form>
     </section>
 </section>
