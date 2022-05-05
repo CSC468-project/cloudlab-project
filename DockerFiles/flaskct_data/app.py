@@ -1,5 +1,4 @@
-from django.shortcuts import redirect
-from flask import Flask, request, render_template, jsonify, send_from_directory
+from flask import Flask, request, render_template, jsonify, send_from_directory, redirect
 from database import get_menu_items, add_order, get_order_items, get_orders_by_id, remove_orders_by_id
 import sys
 
