@@ -41,17 +41,59 @@
         <h1>Welcome to Cloud Cooked </h1>
         <p>We have great food here</p>
     </div>
-    <div>
-        <img src="/static/images/restaurantdecor.jpg" height=200 width=200 style="display:inline-block;">
-        <p> image one </p>
-    </div>
-    <div>
-        <img src="/static/images/pizzachef.jpg" height=200 width=200 style="display:inline-block;">
-        <p> image two </p>
-    </div>
-    <div>
-        <img src="/static/images/delivery.jpg" height=200 width=200 style="display:inline-block;">
-        <p> image three </p>
-    </div>
+    <center>
+        <style>
+            .limit{
+                width:600px;
+                word-wrap: break-word;
+            }
+        </style>
+        <div class = "limit">
+            <center><h1><b><u>About Cloud Cooked</u></b></h1>
+            <p>Founded in 2022, Cloud Cooked provides the best Italian experience in West Chester. Our beautiful restauraunt features gorgeous Italian decor. Chef Petrosky's menu offers some of the best Italian cuisine in town. We have incredibly friendly staff and even offer delivery.</p>
+            <p>
+            So what are you waiting for? Come enjoy your next meal at Cloud Cooked, and feel like you're in Italy the second you walk through our doors!
+            </p>
+        </div>
+    </center>
+        <style>
+         * {
+            box-sizing: border-box;
+            }
+        .imageColumn {
+            float: left;
+            width: 33%;
+            padding: 5px;
+            }
+         .border{
+            border: 5px solid #555;
+            }
+        </style>
+        <center>
+            <div class="alignRow">
+                <div class="imageColumn">
+                    <div class ="border">
+                        <img src="/static/images/restaurantdecor.jpg" height=400 width=300 style="display:inline-block;">
+                    </div>
+                    <p><b>Beautiful Italian Decor</b></p>
+                </div>
+                <div class="imageColumn">
+                    <div class ="border">
+                        <img src="/static/images/pizzachef.jpg" height=400 width=300 style="display:inline-block;">
+                    </div>
+                    <p><b>Delicious Italian Cuisine</b></p>
+                </div>
+                <div class="imageColumn">
+                    <div class ="border">
+                        <img src="/static/images/delivery.jpg" height=400 width=300 style="display:inline-block;">
+                    </div>
+                    <p><b>Quality Delivery Services</b></p>
+                </div>
+            </div>>
+           <br>
+           <div>
+            <p><u>Contact Us:</u><br>cloudcooked@ccservies.com<br>484-PZA-TIME</p>
+           </div>
+        </center>
 </section>
 </body>

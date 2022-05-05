@@ -8,37 +8,38 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import relationship
 from sqlalchemy.types import DateTime, Float
 
-
-class Customer(Base):
-    __tablename__ = 'customer'
-    id = Column(Integer, primary_key=True)
-    name = Column(String(50), nullable=False)
-    address = Column(String(500), nullable=False)
-    city = Column(String(50), nullable=False)
-    zip = Column(String(50), nullable=False)
-    email = Column(String(50), nullable=False, unique=True)
-    phone_number = Column(String(50), nullable=False, unique=True)
-
-    orders = relationship('Order', backref='customer')
-
-    def __init__(self, id, name, email, phone_number, street, city, state, zip):
-        self.id = id
-        self.name = name
-        self.email = email
-        self.phone_number = phone_number
-        self.street = street
-        self.city = city
-        self.state = state
-        self.zip = zip
-
-    def __repr__(self):
-        return f'<User {self.name!r}>'
-
-
 order_menu = Table('order_menu', Base.metadata,
                    Column('order_id', Integer, ForeignKey('order.id'), primary_key=True),
                    Column('menu_id', Integer, ForeignKey('menu.id'), primary_key=True)
                    )
+
+
+class Customer(Base):
+    __tablename__ = 'customer'
+    id = Column(Integer, primary_key=True)
+    name = Column(String(100), nullable=False)
+    address = Column(String(500), nullable=False)
+    city = Column(String(50), nullable=False)
+    zip = Column(String(50), nullable=False)
+    email = Column(String(50), nullable=False)
+    phone_number = Column(String(50), nullable=False)
+    order = Column(String(10000), nullable=False)
+
+    orders = relationship('Order', backref='customer')
+
+    def __init__(self, id, name, email, phone_number, street, city, state, zip, order):
+        self.id = id
+        self.name = name
+        self.email = email
+        self.phone_number = phone_number
+        self.address = street
+        self.city = city
+        self.state = state
+        self.zip = zip
+        self.order = order
+
+    def __repr__(self):
+        return f'<User {self.name!r}>'
 
 
 class Order(Base):

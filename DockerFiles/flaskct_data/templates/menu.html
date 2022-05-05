@@ -45,7 +45,6 @@
         <form action="/order_submitted" method="POST">
             {% for i in range(0, len) %}
                 <label for="{{ items[i].name }}_sel">{{ items[i].name }}: ${{ items[i].price }}</label>
-                <img src="/static/{{ items[i].url }}" alt="picture of {{ items[i].name }}" class="img-thumbnail">
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="number" id="inlineCheckbox1" value="0"
                            name="{{ items[i].name }}_quan">

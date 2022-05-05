@@ -14,12 +14,13 @@ db_session = scoped_session(sessionmaker(autocommit=False,
 Base = declarative_base()
 Base.query = db_session.query_property()
 
+from models import Customer, Menu, Order
+
 
 def init_db():
     # import all modules here that might define models so that
     # they will be registered properly on the metadata.  Otherwise
     # you will have to import them first before calling init_db()
-    from models import Menu
     Base.metadata.create_all(bind=engine)
     items = [Menu(name="Pizza", price="3.50",
                   url="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"),
@@ -33,18 +34,40 @@ def init_db():
 
 
 def get_menu_items():
-    from models import Menu
     return Menu.query.all()
 
 
+def get_order_items():
+    return Customer.query.all()
+
+
 def add_order(order):
-    from models import Customer
-    Customer.metadata.create_all(bind=engine)
-    to_add = Customer(random.randint(0, 100000000), order.get("name"), order.get("email"),
-                      order.get("phone"),
-                      order.get("street"), order.get("city"), order.get("state"),
-                      order.get("zip"))
+    Base.metadata.create_all(bind=engine)
+    to_add = Customer(id=random.randint(0, 100000),
+                      name=order.get("name"),
+                      email=order.get("email"),
+                      phone_number=order.get("phone"),
+                      street=order.get("street"),
+                      city=order.get("city"),
+                      state=order.get("state"),
+                      zip=order.get("zip"),
+                      order="{}_{}_{}".format(order.get("Pizza_quan"), order.get("Fries_quan"), order.get("Soda_quen")))
     db_session.add(to_add)
+    db_session.commit()
+
+
+def get_orders_by_id(order_ids):
+    return_orders = []
+    for id in order_ids:
+        return_orders.append(Customer.query.filter_by(id=id).one())
+
+    return return_orders
+
+
+def remove_orders_by_id(order_ids):
+    for id in order_ids:
+        Customer.query.filter_by(id=id).delete()
+
     db_session.commit()
 
 

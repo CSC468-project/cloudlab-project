@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Menu for {{ title }}</title>
+    <title>Active Orders</title>
     <!-- bootstrap incl -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -38,40 +38,45 @@
 <body>
 <section class="container">
     <div class="jumbotron">
-        <h1>Menu for Today</h1>
+        <h1>Active Orders</h1>
     </div>
     <section class="py-5">
-        {% for i in range(0, len) %}
-            <div class="col mb-5">
-                <div class="card h-100">
-                    <!-- Sale badge-->
-                    <div class="badge bg-dark text-white position-absolute"
-                         style="top: 0.5rem; right: 1rem">RESTAURANT
-                        Sale
-                    </div>
-                    <!-- Product image-->
-                    <img class="card-img-top" src="{{ items[i].url }}"
-                         alt="Picture of {{ items[i].name }}"/>
-                    <!-- Product details-->
-                    <div class="card-body p-4">
-                        <div class="text-center">
-                            <!-- Product name-->
-                            <h5 class="fw-bolder">{{ items[i].name }}</h5>
-                            <!-- Product price-->
-                            ${{ items[i].price }}
+        <form action="/orders" method="POST">
+            {% for i in range(0, len) %}
+                <div class="col mb-5">
+                    <div class="card h-100">
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="row">
+                                <div class="span1">
+                                    <!-- Product name-->
+                                    <h4 class="fw-bolder">Customer Information:</h4>
+                                    <p>Name: {{ items[i].name }}</p>
+                                    <p>Street: {{ items[i].address }}</p>
+                                    <p>City: {{ items[i].city }}</p>
+                                    <p>Zip: {{ items[i].zip }}</p>
+                                    <p>Email: {{ items[i].email }}</p>
+                                    <p>Phone Number: {{ items[i].phone_number }}</p>
+                                </div>
+                                <div class="span2">
+                                    <br>
+                                </div>
+                                <div class="span3 pull-right">
+                                    <h4 class="fw-bolder">Order Information</h4>
+                                    <p>{{ orders[i] }}</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <!-- Product actions-->
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to
-                            cart</a></div>
+                        <!-- Product actions-->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <p>Select for Delivery</p>
+                            <input type="checkbox" class="checkbox" name="orderid_{{ items[i].id }}"></div>
                     </div>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+            <input type="submit" value="Generate Route">
+        </form>
     </section>
 </section>
 </body>
-
-<p>contact stuff at bottom</p>
 </html>
