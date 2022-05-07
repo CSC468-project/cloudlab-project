@@ -1,0 +1,3 @@
+CloudLab provides researchers with control and visibility all the way down to the bare metal. Provisioning an entire cloud inside of CloudLab takes only minutes. Most CloudLab resources provide hard isolation from other users, so it can support hundreds of simultaneous "slices", with each getting an artifact-free environment suitable for scientific experimentation with new cloud architectures. Run standard cloud software stacks such as OpenStack, Hadoop, and Kubernetes. Or, build your own from the ground up. The bare metal's the limit!
+
+CloudLab is built from the software technologies that make up Emulab and parts of GENI, so it provides a familiar, consistent interface for researchers.
